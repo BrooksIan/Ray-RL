@@ -19,6 +19,9 @@
 ## Helpful Links
 
 [RLlib: Industry-Grade Reinforcement Learning](https://docs.ray.io/en/latest/rllib/index.html)
+
 [Ray RL Examples](https://docs.ray.io/en/latest/rllib/rllib-examples.html)
+
 [Intro to RLlib: Example Environments](https://medium.com/distributed-computing-with-ray/intro-to-rllib-example-environments-3a113f532c70)
+
 [Reinforcement Learning with RLlib in the Unity Game Engine](https://medium.com/distributed-computing-with-ray/reinforcement-learning-with-rllib-in-the-unity-game-engine-1a98080a7c0d)
