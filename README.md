@@ -4,7 +4,7 @@
 ## Intro
  RLlib is an open-source library for reinforcement learning (RL), offering support for production-level, highly distributed RL workloads while maintaining unified and simple APIs for a large variety of industry applications.
 
-## What is RL 
+## What is Reinforcement Learning
 
  With reinforcement learning, one or more agents interact within an environment which may be either a simulation or a connection to real-world sensors and actuators.
 
