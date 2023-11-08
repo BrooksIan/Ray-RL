@@ -16,6 +16,19 @@
 
  ![](images/RLOverview.png)
 
+## Overview of RL terminology
+
+An RL environment consists of:
+
+1. **action space** - all possible actions
+2. **state space** - a complete description of the environment, nothing hidden 
+3. **observation space** an observation by the agent of certain parts of the state 
+4. **reward**, which is the only feedback the agent receives after each action.
+
+The model that tries to maximize the expected sum over all future rewards is called a policy. The policy is a function mapping the environment's observations to an action to take, usually written π (s(t)) -> a(t). In deep reinforcement learning, this function is a neural network.
+
+> In RL, a model is roughly equivalent to a policy, but policy is more specific because it is trained in a specific environment. For deployment, we use the word "model" because more people understand the ML meaning of a trained model.
+
 ## Helpful Ray RL Links
 
 [RLlib: Industry-Grade Reinforcement Learning](https://docs.ray.io/en/latest/rllib/index.html)
