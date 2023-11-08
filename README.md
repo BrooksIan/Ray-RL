@@ -29,6 +29,9 @@ The model that tries to maximize the expected sum over all future rewards is cal
 
 > In RL, a model is roughly equivalent to a policy, but policy is more specific because it is trained in a specific environment. For deployment, we use the word "model" because more people understand the ML meaning of a trained model.
 
+
+ ![](images/RLWithPolicy.png)
+
 ## Helpful Ray RL Links
 
 [RLlib: Industry-Grade Reinforcement Learning](https://docs.ray.io/en/latest/rllib/index.html)
