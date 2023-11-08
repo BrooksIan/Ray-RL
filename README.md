@@ -23,7 +23,7 @@ An RL environment consists of:
 1. **action space** - all possible actions
 2. **state space** - a complete description of the environment, nothing hidden 
 3. **observation space** an observation by the agent of certain parts of the state 
-4. **reward**, which is the only feedback the agent receives after each action.
+4. **reward** - is the only feedback the agent receives after each action.
 
 The model that tries to maximize the expected sum over all future rewards is called a policy. The policy is a function mapping the environment's observations to an action to take, usually written π (s(t)) -> a(t). In deep reinforcement learning, this function is a neural network.
 
@@ -41,3 +41,11 @@ The model that tries to maximize the expected sum over all future rewards is cal
 [Intro to RLlib: Example Environments](https://medium.com/distributed-computing-with-ray/intro-to-rllib-example-environments-3a113f532c70)
 
 [Reinforcement Learning with RLlib in the Unity Game Engine](https://medium.com/distributed-computing-with-ray/reinforcement-learning-with-rllib-in-the-unity-game-engine-1a98080a7c0d)
+
+[Lessons from Implementing 12 Deep RL Algorithms in TF and PyTorch](https://medium.com/distributed-computing-with-ray/lessons-from-implementing-12-deep-rl-algorithms-in-tf-and-pytorch-1b412009297d)
+
+[Proximal Policy Optimization Algorithms](https://arxiv.org/abs/1707.06347)
+
+[Ray Rl Example - Learning to Play Pong](https://docs.ray.io/en/latest/ray-core/examples/plot_pong_example.html)
+
+[Deep Reinforcement Learning: Pong from Pixels](http://karpathy.github.io/2016/05/31/rl/)
