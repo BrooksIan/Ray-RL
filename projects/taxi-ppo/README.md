@@ -136,5 +136,5 @@ Next steps in the blueprint ladder:
 - [CartPole DQN](../cartpole-dqn/) — off-policy discrete control
 - [Pendulum SAC](../pendulum-sac/) — continuous actuators
 - [Multi-Agent CartPole PPO](../multiagent-cartpole/) — fleet / policy mapping
-- [Offline MARWIL](../offline-marwil/) — learn from logged trajectories
+- [Offline BC / MARWIL](../offline-marwil/) — learn from logged trajectories
 - [Project index](../README.md) · [Cover README](../../README.md)

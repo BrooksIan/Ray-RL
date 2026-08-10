@@ -5,8 +5,9 @@
 | [Getting started (Workbench)](getting-started.md) | Developers / SEs deploying on Cloudera AI |
 | [RL primer](rl-primer.md) | Readers new to reinforcement learning |
 | [Deploy notes](../deploy/README.md) | Platform / session sizing + multi-worker Ray |
-| [MLflow tracking](../deploy/mlflow.md) | Optional episode-return experiment tracking |
-| [Project index](../projects/README.md) | Learning path + how to add projects |
+| [MLflow tracking](../deploy/mlflow.md) | Optional episode-return experiment tracking (SQLite default) |
+| [Project index](../projects/README.md) | Learning path + notebooks + how to add projects |
+| [Cover README](../README.md) | Blueprint overview and quickstart |
 
 ## Projects
 

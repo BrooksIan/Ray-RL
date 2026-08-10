@@ -56,7 +56,7 @@ Within about a minute you should see five training iterations with improving `ep
 | [CartPole DQN](../projects/cartpole-dqn/README.md) | `pip install -r projects/cartpole-dqn/requirements.txt` | `python projects/cartpole-dqn/train_cartpole_dqn.py` | ~1–2 min |
 | [Pendulum SAC](../projects/pendulum-sac/README.md) | `pip install -r projects/pendulum-sac/requirements.txt` | `python projects/pendulum-sac/train_pendulum_sac.py` | ~5–10 min |
 | [Multi-Agent CartPole](../projects/multiagent-cartpole/README.md) | `pip install -r projects/multiagent-cartpole/requirements.txt` | `python projects/multiagent-cartpole/train_multiagent_cartpole.py` | ~1–2 min |
-| [Offline MARWIL](../projects/offline-marwil/README.md) | `pip install -r projects/offline-marwil/requirements.txt` | `python projects/offline-marwil/run_pipeline.py` | ~3–8 min |
+| [Offline BC / MARWIL](../projects/offline-marwil/README.md) | `pip install -r projects/offline-marwil/requirements.txt` | `python projects/offline-marwil/run_pipeline.py` | ~2–5 min |
 
 Full ladder description: [README learning path](../README.md#learning-path).
 
@@ -65,7 +65,7 @@ Full ladder description: [README learning path](../README.md#learning-path).
 | Goal | How |
 | --- | --- |
 | More rollout throughput | Larger session + `python projects/taxi-ppo/train_taxi_ppo.py --num-env-runners N` — see [deploy multi-worker](../deploy/README.md#multi-worker-ray-on-workbench) |
-| Track episode return in MLflow | `pip install mlflow` then `RAY_RL_MLFLOW=1` — [deploy/mlflow.md](../deploy/mlflow.md) |
+| Track episode return in MLflow | `pip install mlflow` then `RAY_RL_MLFLOW=1` (default store `sqlite:///./mlflow.db`) — [deploy/mlflow.md](../deploy/mlflow.md) |
 | Offline from existing logs | Skip the recorder: `train_offline_marwil.py --input /path/to/parquet` — [BYO logs](../projects/offline-marwil/README.md#bring-your-own-parquet-logs) |
 
 ## Troubleshooting

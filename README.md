@@ -1,6 +1,6 @@
 # Cloudera Blueprint: Ray RLlib on Cloudera AI
 
-> Multi-project **Ray RLlib** examples for Cloudera AI Workbench. The cover demo trains **PPO on Gymnasium Taxi-v3**; companions add DQN, SAC, and multi-agent PPO. Catalog fields: [`METADATA.yaml`](METADATA.yaml).
+> Multi-project **Ray RLlib** examples for Cloudera AI Workbench. The cover demo trains **PPO on Gymnasium Taxi-v3**; companions add DQN, SAC, multi-agent PPO, and offline BC (MARWIL-ready). Catalog fields: [`METADATA.yaml`](METADATA.yaml).
 
 ## Table of Contents
 
@@ -20,7 +20,7 @@
 
 ## Overview
 
-**Ray RLlib on Cloudera AI** helps ML engineers and architects learn distributed reinforcement learning where they already work — inside Cloudera AI Workbench. The blueprint ships a featured PPO → Taxi-v3 quickstart on RLlib’s current EnvRunner / RLModule API, then a ladder of companion projects that teach off-policy discrete control (DQN), continuous actuators (SAC), multi-agent fleets (multi-agent PPO), and offline learning from logs (MARWIL). Cloudera value: run Ray-based RL experiments on the same governed AI workbench used for notebooks, sessions, and team collaboration.
+**Ray RLlib on Cloudera AI** helps ML engineers and architects learn distributed reinforcement learning where they already work — inside Cloudera AI Workbench. The blueprint ships a featured PPO → Taxi-v3 quickstart on RLlib’s current EnvRunner / RLModule API, then a ladder of companion projects that teach off-policy discrete control (DQN), continuous actuators (SAC), multi-agent fleets (multi-agent PPO), and offline learning from logs (BC, MARWIL-ready). Cloudera value: run Ray-based RL experiments on the same governed AI workbench used for notebooks, sessions, and team collaboration — with optional multi-worker sizing and MLflow episode-return tracking.
 
 ## Learning path
 
@@ -32,9 +32,9 @@ Work through the projects in order — each adds one RLlib capability without le
 | 2 | [`cartpole-dqn`](projects/cartpole-dqn/) | DQN | Off-policy + replay; discrete process control |
 | 3 | [`pendulum-sac`](projects/pendulum-sac/) | SAC | Continuous torque / actuator control |
 | 4 | [`multiagent-cartpole`](projects/multiagent-cartpole/) | Multi-agent PPO | Policies, mapping fn, fleet-style controllers |
-| 5 | [`offline-marwil`](projects/offline-marwil/) | MARWIL | Learn from logged trajectories (no online explore) |
+| 5 | [`offline-marwil`](projects/offline-marwil/) | BC (MARWIL-ready) | Learn from logged trajectories (no online explore) |
 
-All share the same install pattern: `pip install -r projects/<slug>/requirements.txt` then run the project entrypoint.
+All share the same install pattern: `pip install -r projects/<slug>/requirements.txt` then run the project script or notebook.
 
 ## Demo
 
@@ -100,19 +100,20 @@ That is the same shape as many enterprise control problems: route a resource, co
 
 RL fits because Taxi is a **sequential decision** problem with **delayed credit**: the valuable +20 arrives only after a chain of moves. Algorithms like PPO improve a policy by trial and error — try routes, take the penalties and bonuses, and reinforce behaviors that raise cumulative return.
 
-Taxi is intentionally small (500 discrete states, 6 actions), so you can see learning quickly on a laptop or Workbench session. Companion projects extend the same RLlib loop to discrete control (CartPole/DQN), continuous actuators (Pendulum/SAC), and multi-agent fleets (MultiAgentCartPole/PPO).
+Taxi is intentionally small (500 discrete states, 6 actions), so you can see learning quickly on a laptop or Workbench session. Companion projects extend the same RLlib loop to discrete control (CartPole/DQN), continuous actuators (Pendulum/SAC), multi-agent fleets (MultiAgentCartPole/PPO), and offline imitation from logs (BC).
 
 ### Blueprint outcome
 
-Teams leave with a reproducible first success on Cloudera AI — train and evaluate PPO on Taxi-v3 in minutes — then a clear ladder into off-policy, continuous, and multi-agent RLlib patterns under one repo.
+Teams leave with a reproducible first success on Cloudera AI — train and evaluate PPO on Taxi-v3 in minutes — then a clear ladder into off-policy, continuous, multi-agent, and offline RLlib patterns under one repo.
 
 ## Key Features
 
 - Featured **Taxi PPO** cover demo on the current RLlib API stack
-- Companion projects: **DQN**, **SAC**, **multi-agent PPO**, and **offline MARWIL**
+- Companion projects: **DQN**, **SAC**, **multi-agent PPO**, and **offline BC** (MARWIL-ready)
 - **Multi-project** layout (`projects/<slug>/`) with a documented learning path
-- Runnable scripts (plus Taxi notebook) with per-project pinned dependencies
-- **Workbench-ready** deploy and sizing guidance
+- Runnable **scripts and Jupyter notebooks** for every project, with pinned dependencies
+- **Workbench-ready** deploy notes: session sizing, multi-worker EnvRunners, optional MLflow
+- Offline **bring-your-own Parquet** path (skip the built-in recorder)
 - **RL primer** and diagrams for non-RL practitioners
 - Catalog-ready [`METADATA.yaml`](METADATA.yaml) (Apache-2.0)
 
@@ -141,14 +142,19 @@ Teams leave with a reproducible first success on Cloudera AI — train and evalu
 
 4. Or open [`projects/taxi-ppo/RayRLTest.ipynb`](projects/taxi-ppo/RayRLTest.ipynb) with that venv kernel.
 
-5. (Optional) Continue the ladder:
+5. (Optional) Continue the ladder — scripts or notebooks under `projects/<slug>/`.
+
+6. (Optional) Log episode return to MLflow:
 
    ```bash
-   pip install -r projects/cartpole-dqn/requirements.txt
-   python projects/cartpole-dqn/train_cartpole_dqn.py
+   pip install mlflow
+   export RAY_RL_MLFLOW=1
+   export MLFLOW_TRACKING_URI=sqlite:///./mlflow.db
+   python projects/taxi-ppo/train_taxi_ppo.py
+   mlflow ui --backend-store-uri sqlite:///./mlflow.db
    ```
 
-**Cloudera AI Workbench:** start a Python session (≥2 vCPU / 8 GB), clone or open this repo, then run the same install + entrypoint steps. Full guide: [docs/getting-started.md](docs/getting-started.md).
+**Cloudera AI Workbench:** start a Python session (≥2 vCPU / 8 GB), clone or open this repo, then run the same install + entrypoint steps. Full guide: [docs/getting-started.md](docs/getting-started.md). Multi-worker sizing: [deploy/README.md](deploy/README.md#multi-worker-ray-on-workbench).
 
 Apple Silicon: [Ray M-series install notes](https://docs.ray.io/en/latest/ray-overview/installation.html#m1-mac-apple-silicon-support).
 
@@ -174,10 +180,11 @@ Cloudera AI Workbench (session / notebook)
 | Component | Role |
 | --- | --- |
 | Cloudera AI Workbench | Runtime for sessions, notebooks, and team projects |
-| Ray RLlib | Distributed RL (PPO, DQN, SAC, multi-agent) |
+| Ray RLlib | Distributed RL (PPO, DQN, SAC, multi-agent, BC / MARWIL) |
 | PyTorch | Default deep learning backend for RLModules |
 | Gymnasium | Standard envs (`Taxi-v3`, `CartPole-v1`, `Pendulum-v1`) |
-| `projects/*` | Self-contained demos (script, pins, README) |
+| MLflow (optional) | Episode-return experiment tracking (`RAY_RL_MLFLOW=1`) |
+| `projects/*` | Self-contained demos (script, notebook, pins, README) |
 
 Shared diagrams:
 
@@ -207,7 +214,7 @@ Shared diagrams:
 | `projects/cartpole-dqn/` | DQN → CartPole-v1 |
 | `projects/pendulum-sac/` | SAC → Pendulum-v1 |
 | `projects/multiagent-cartpole/` | Multi-agent PPO → MultiAgentCartPole |
-| `projects/offline-marwil/` | MARWIL from logged CartPole episodes |
+| `projects/offline-marwil/` | Offline BC from logged CartPole episodes (MARWIL-ready) |
 | `LICENSE` | Apache License 2.0 |
 
 ## Prerequisites
@@ -216,7 +223,8 @@ Shared diagrams:
 - Per-project packages (same core pins): `ray[rllib]==2.56.1`, PyTorch, Gymnasium — see each `projects/*/requirements.txt`
 - Cloudera AI Workbench or CML project access (for platform runs)
 - Outbound PyPI (or internal mirror) for dependency install
-- Optional: Jupyter / VS Code / Cursor for the Taxi notebook
+- Optional: Jupyter / VS Code / Cursor for project notebooks
+- Optional: `mlflow` for experiment tracking ([deploy/mlflow.md](deploy/mlflow.md))
 - No external model API keys for these demos
 
 ## Hardware Requirements
@@ -226,7 +234,8 @@ Shared diagrams:
 | Cover demo (Taxi PPO) | 2 vCPU, 8 GB RAM, ~5 GB disk; GPU not required; &lt;1 min |
 | CartPole DQN / multi-agent CartPole | Same as cover; roughly 1–2 minutes |
 | Pendulum SAC | 2–4 vCPU, 8 GB RAM; ~5–10 minutes on CPU for the default 15-iter smoke run |
-| Offline MARWIL pipeline | 2–4 vCPU, 8 GB RAM; ~3–8 minutes (record + train) |
+| Offline BC pipeline | 2–4 vCPU, 8 GB RAM; ~2–5 minutes (record + train) |
+| Multi-worker Taxi (`--num-env-runners 4`) | 8 vCPU / 16 GB preferred |
 | Larger / production-style workloads | 4+ vCPU, 16 GB RAM; GPU optional for bigger nets / image envs |
 
 See [deploy/README.md](deploy/README.md) for Workbench session guidance.
@@ -237,7 +246,7 @@ See [deploy/README.md](deploy/README.md) for Workbench session guidance.
 - [RL primer](docs/rl-primer.md)
 - [Deploy / sizing / multi-worker](deploy/README.md) · [MLflow tracking](deploy/mlflow.md)
 - [Project index](projects/README.md)
-- [Taxi PPO](projects/taxi-ppo/README.md) · [CartPole DQN](projects/cartpole-dqn/README.md) · [Pendulum SAC](projects/pendulum-sac/README.md) · [Multi-Agent CartPole](projects/multiagent-cartpole/README.md) · [Offline MARWIL](projects/offline-marwil/README.md)
+- [Taxi PPO](projects/taxi-ppo/README.md) · [CartPole DQN](projects/cartpole-dqn/README.md) · [Pendulum SAC](projects/pendulum-sac/README.md) · [Multi-Agent CartPole](projects/multiagent-cartpole/README.md) · [Offline BC / MARWIL](projects/offline-marwil/README.md)
 - [RLlib docs](https://docs.ray.io/en/latest/rllib/index.html) · [RLlib algorithms](https://docs.ray.io/en/latest/rllib/rllib-algorithms.html)
 - [Cloudera AI documentation](https://docs.cloudera.com/)
 - [Proximal Policy Optimization (paper)](https://arxiv.org/abs/1707.06347)
@@ -250,7 +259,7 @@ See [deploy/README.md](deploy/README.md) for Workbench session guidance.
 | [**cartpole-dqn**](projects/cartpole-dqn/) | Companion | DQN | Off-policy discrete control on `CartPole-v1` |
 | [**pendulum-sac**](projects/pendulum-sac/) | Companion | SAC | Continuous control on `Pendulum-v1` |
 | [**multiagent-cartpole**](projects/multiagent-cartpole/) | Companion | Multi-agent PPO | Fleet controllers on `MultiAgentCartPole` |
-| [**offline-marwil**](projects/offline-marwil/) | Companion | MARWIL | Offline learning from logged CartPole trajectories |
+| [**offline-marwil**](projects/offline-marwil/) | Companion | BC (MARWIL-ready) | Offline learning from logged CartPole trajectories |
 
 Add more under `projects/<slug>/` using the [project convention](projects/README.md).
 

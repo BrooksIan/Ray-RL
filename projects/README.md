@@ -21,12 +21,12 @@ projects/<project-slug>/
   README.md           # purpose, why RL, quickstart, expected output
   requirements.txt    # pinned deps for this project
   train_*.py          # runnable entrypoint
-  *.ipynb             # optional notebook twin
+  *.ipynb             # notebook twin (every project has one)
 ```
 
 Optional later: `assets/`, `configs/`, `tests/` inside a project as needed.
 
-Shared helpers (optional MLflow, etc.) live under [`common/`](common/). Platform sizing and tracking: [`../deploy/README.md`](../deploy/README.md).
+Shared helpers (optional MLflow, etc.) live under [`common/`](common/). Platform sizing and tracking: [`../deploy/README.md`](../deploy/README.md) · [`../deploy/mlflow.md`](../deploy/mlflow.md).
 
 ## Add a new project
 

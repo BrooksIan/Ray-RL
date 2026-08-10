@@ -4,13 +4,15 @@
 # --- Identity ---
 name: "Ray RLlib on Cloudera AI"
 slug: "ray-rllib-on-cloudera-ai"
-description: "Multi-project Ray RLlib labs on Cloudera AI — Taxi/PPO cover, plus DQN, SAC, multi-agent PPO, and offline MARWIL."
+description: "Multi-project Ray RLlib labs on Cloudera AI — Taxi/PPO cover, plus DQN, SAC, multi-agent PPO, and offline BC (MARWIL-ready)."
 long_description: >
   Learn distributed reinforcement learning with Ray RLlib on Cloudera AI Workbench.
   The cover demo uses Gymnasium Taxi with PPO (pickup-and-delivery, delayed rewards).
   Companion projects add DQN on CartPole, SAC on Pendulum, multi-agent PPO on
-  MultiAgentCartPole, and offline MARWIL from logged CartPole trajectories.
-  Includes script entrypoints, a Taxi notebook, an RL primer, and Workbench deploy notes.
+  MultiAgentCartPole, and offline BC from logged CartPole trajectories (MARWIL-ready).
+  Includes script entrypoints, Jupyter notebooks for every project, optional MLflow
+  episode-return tracking, multi-worker Workbench sizing notes, an RL primer, and
+  deploy guidance.
 reprise_link: "" # Optional: public Reprise / recorded walkthrough URL
 demo_entrypoint: "projects/taxi-ppo/train_taxi_ppo.py"
 demo_notebook: "projects/taxi-ppo/RayRLTest.ipynb"
@@ -34,8 +36,9 @@ projects:
     status: companion
   - slug: offline-marwil
     path: projects/offline-marwil
-    algorithm: MARWIL
+    algorithm: BC
     status: companion
+    notes: "Smoke uses BCConfig; MARWILConfig + beta>0 documented as upgrade"
 
 # --- Classification (website filters) ---
 catalog_classification:
@@ -58,12 +61,15 @@ tags:
   - sac
   - multi-agent
   - offline-rl
+  - behavior-cloning
   - marwil
   - imitation-learning
+  - mlflow
   - gymnasium
   - pytorch
   - multi-project
   - cloudera-ai
+  - jupyter
 
 # --- Relationships ---
 product_mapping:

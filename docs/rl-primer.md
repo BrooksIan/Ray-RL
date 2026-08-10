@@ -28,6 +28,7 @@ The learning system trains a **policy** — which actions maximize long-term cum
 | On-policy | Learn only from data collected by the current policy (e.g. PPO) |
 | Off-policy | Reuse past transitions from a replay buffer (e.g. DQN, SAC) |
 | Multi-agent | Several agents/policies act in one environment loop |
+| Offline / imitation | Learn from logged trajectories without online exploration (e.g. BC, MARWIL) |
 
 ![RL with policy](../assets/RLWithPolicy.png)
 
@@ -41,7 +42,7 @@ The learning system trains a **policy** — which actions maximize long-term cum
 | [CartPole DQN](../projects/cartpole-dqn/README.md) | `CartPole-v1` | DQN | Keep a system stable with discrete actions; off-policy + replay |
 | [Pendulum SAC](../projects/pendulum-sac/README.md) | `Pendulum-v1` | SAC | Continuous torque — actuators, not button menus |
 | [Multi-Agent CartPole](../projects/multiagent-cartpole/README.md) | `MultiAgentCartPole` | Multi-agent PPO | Fleet of controllers; policies + mapping function |
-| [Offline MARWIL](../projects/offline-marwil/README.md) | Logged `CartPole-v1` | MARWIL | Learn from trajectories when online exploration is costly |
+| [Offline BC / MARWIL](../projects/offline-marwil/README.md) | Logged `CartPole-v1` | BC (MARWIL-ready) | Learn from trajectories when online exploration is costly |
 
 ### Concrete example: Taxi (cover)
 
@@ -51,13 +52,23 @@ That is why RL is the natural approach — you learn a **sequence of decisions**
 
 ## Why Ray RLlib
 
-[RLlib](https://docs.ray.io/en/latest/rllib/index.html) provides production-oriented, distributed RL algorithms (PPO, DQN, SAC, and others) with a unified config/train/evaluate API. This blueprint uses the **new API stack**: EnvRunners for sampling, RLModules for policies, connectors (for example `FlattenObservations` on discrete Taxi states), and `.multi_agent(...)` for fleets.
+[RLlib](https://docs.ray.io/en/latest/rllib/index.html) provides production-oriented, distributed RL algorithms (PPO, DQN, SAC, BC, MARWIL, and others) with a unified config/train/evaluate API. This blueprint uses the **new API stack**: EnvRunners for sampling, RLModules for policies, connectors (for example `FlattenObservations` on discrete Taxi states), `.multi_agent(...)` for fleets, and `.offline_data(...)` for logged Parquet.
 
 Algorithm catalog: [RLlib algorithms](https://docs.ray.io/en/latest/rllib/rllib-algorithms.html).
+
+## Platform extras (Cloudera AI)
+
+| Topic | Doc |
+| --- | --- |
+| Workbench session + multi-worker EnvRunners | [deploy/README.md](../deploy/README.md) |
+| Optional MLflow episode-return tracking | [deploy/mlflow.md](../deploy/mlflow.md) |
+| Bring-your-own offline Parquet | [offline-marwil README](../projects/offline-marwil/README.md#bring-your-own-parquet-logs) |
+| Notebook twins for every project | [docs/README.md](README.md) |
 
 ## Further reading
 
 - [RLlib docs](https://docs.ray.io/en/latest/rllib/index.html)
+- [RLlib offline RL](https://docs.ray.io/en/latest/rllib/rllib-offline.html)
 - [Proximal Policy Optimization (paper)](https://arxiv.org/abs/1707.06347)
 - [Deep RL: Pong from pixels](http://karpathy.github.io/2016/05/31/rl/)
 - [Project index](../projects/README.md)

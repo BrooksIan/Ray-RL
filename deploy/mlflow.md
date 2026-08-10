@@ -23,11 +23,13 @@ python projects/offline-marwil/train_offline_marwil.py --input projects/offline-
 | `MLFLOW_TRACKING_URI` | SQLite URI, HTTP tracking server, or legacy file store |
 | `RAY_RL_MLFLOW_EXPERIMENT` | Experiment name (default: `ray-rllib-blueprint`) |
 
-View local runs:
+View local runs (leave this process running, then open the URL it prints — usually `http://127.0.0.1:5000`):
 
 ```bash
 mlflow ui --backend-store-uri "${MLFLOW_TRACKING_URI:-sqlite:///./mlflow.db}"
 ```
+
+Look for experiment **`ray-rllib-blueprint`** and runs such as `taxi-ppo` or `offline-bc`. Metrics include `episode_return_mean` / `evaluate_episode_return_mean` by training step.
 
 ### Legacy `./mlruns` file store
 
