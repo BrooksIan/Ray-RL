@@ -41,6 +41,7 @@ The learning system trains a **policy** — which actions maximize long-term cum
 | [CartPole DQN](../projects/cartpole-dqn/README.md) | `CartPole-v1` | DQN | Keep a system stable with discrete actions; off-policy + replay |
 | [Pendulum SAC](../projects/pendulum-sac/README.md) | `Pendulum-v1` | SAC | Continuous torque — actuators, not button menus |
 | [Multi-Agent CartPole](../projects/multiagent-cartpole/README.md) | `MultiAgentCartPole` | Multi-agent PPO | Fleet of controllers; policies + mapping function |
+| [Offline MARWIL](../projects/offline-marwil/README.md) | Logged `CartPole-v1` | MARWIL | Learn from trajectories when online exploration is costly |
 
 ### Concrete example: Taxi (cover)
 

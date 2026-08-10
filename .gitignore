@@ -15,6 +15,9 @@ ray_results/
 .ray_results/
 /tmp/
 
+# Generated offline RL datasets / local checkpoints
+projects/**/data/
+
 # IDE
 .idea/
 .vscode/

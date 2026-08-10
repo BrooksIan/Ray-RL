@@ -15,3 +15,4 @@
 | CartPole DQN | [projects/cartpole-dqn/README.md](../projects/cartpole-dqn/README.md) |
 | Pendulum SAC | [projects/pendulum-sac/README.md](../projects/pendulum-sac/README.md) |
 | Multi-Agent CartPole PPO | [projects/multiagent-cartpole/README.md](../projects/multiagent-cartpole/README.md) |
+| Offline MARWIL | [projects/offline-marwil/README.md](../projects/offline-marwil/README.md) |

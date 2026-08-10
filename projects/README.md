@@ -10,6 +10,7 @@ Each subdirectory under `projects/` is a self-contained Ray RLlib example.
 | 2 | **CartPole DQN** | [`cartpole-dqn/`](cartpole-dqn/) | DQN | Off-policy discrete control on `CartPole-v1` |
 | 3 | **Pendulum SAC** | [`pendulum-sac/`](pendulum-sac/) | SAC | Continuous control on `Pendulum-v1` |
 | 4 | **Multi-Agent CartPole PPO** | [`multiagent-cartpole/`](multiagent-cartpole/) | Multi-agent PPO | Fleet controllers on `MultiAgentCartPole` |
+| 5 | **Offline MARWIL** | [`offline-marwil/`](offline-marwil/) | MARWIL | Learn from logged CartPole trajectories |
 
 Cover quickstart stays on Taxi; companions are optional next labs. Blueprint overview: [../README.md](../README.md).
 

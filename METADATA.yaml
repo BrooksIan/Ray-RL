@@ -4,12 +4,12 @@
 # --- Identity ---
 name: "Ray RLlib on Cloudera AI"
 slug: "ray-rllib-on-cloudera-ai"
-description: "Multi-project Ray RLlib labs on Cloudera AI — Taxi/PPO cover demo, plus CartPole/DQN, Pendulum/SAC, and multi-agent CartPole."
+description: "Multi-project Ray RLlib labs on Cloudera AI — Taxi/PPO cover, plus DQN, SAC, multi-agent PPO, and offline MARWIL."
 long_description: >
   Learn distributed reinforcement learning with Ray RLlib on Cloudera AI Workbench.
   The cover demo uses Gymnasium Taxi with PPO (pickup-and-delivery, delayed rewards).
-  Companion projects add DQN on CartPole (off-policy discrete control), SAC on Pendulum
-  (continuous actuators), and multi-agent PPO on MultiAgentCartPole (fleet controllers).
+  Companion projects add DQN on CartPole, SAC on Pendulum, multi-agent PPO on
+  MultiAgentCartPole, and offline MARWIL from logged CartPole trajectories.
   Includes script entrypoints, a Taxi notebook, an RL primer, and Workbench deploy notes.
 reprise_link: "" # Optional: public Reprise / recorded walkthrough URL
 demo_entrypoint: "projects/taxi-ppo/train_taxi_ppo.py"
@@ -32,6 +32,10 @@ projects:
     path: projects/multiagent-cartpole
     algorithm: PPO-multiagent
     status: companion
+  - slug: offline-marwil
+    path: projects/offline-marwil
+    algorithm: MARWIL
+    status: companion
 
 # --- Classification (website filters) ---
 catalog_classification:
@@ -53,6 +57,9 @@ tags:
   - dqn
   - sac
   - multi-agent
+  - offline-rl
+  - marwil
+  - imitation-learning
   - gymnasium
   - pytorch
   - multi-project

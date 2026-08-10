@@ -20,7 +20,7 @@
 
 ## Overview
 
-**Ray RLlib on Cloudera AI** helps ML engineers and architects learn distributed reinforcement learning where they already work — inside Cloudera AI Workbench. The blueprint ships a featured PPO → Taxi-v3 quickstart on RLlib’s current EnvRunner / RLModule API, then a ladder of companion projects that teach off-policy discrete control (DQN), continuous actuators (SAC), and multi-agent fleets (multi-agent PPO). Cloudera value: run Ray-based RL experiments on the same governed AI workbench used for notebooks, sessions, and team collaboration.
+**Ray RLlib on Cloudera AI** helps ML engineers and architects learn distributed reinforcement learning where they already work — inside Cloudera AI Workbench. The blueprint ships a featured PPO → Taxi-v3 quickstart on RLlib’s current EnvRunner / RLModule API, then a ladder of companion projects that teach off-policy discrete control (DQN), continuous actuators (SAC), multi-agent fleets (multi-agent PPO), and offline learning from logs (MARWIL). Cloudera value: run Ray-based RL experiments on the same governed AI workbench used for notebooks, sessions, and team collaboration.
 
 ## Learning path
 
@@ -32,6 +32,7 @@ Work through the projects in order — each adds one RLlib capability without le
 | 2 | [`cartpole-dqn`](projects/cartpole-dqn/) | DQN | Off-policy + replay; discrete process control |
 | 3 | [`pendulum-sac`](projects/pendulum-sac/) | SAC | Continuous torque / actuator control |
 | 4 | [`multiagent-cartpole`](projects/multiagent-cartpole/) | Multi-agent PPO | Policies, mapping fn, fleet-style controllers |
+| 5 | [`offline-marwil`](projects/offline-marwil/) | MARWIL | Learn from logged trajectories (no online explore) |
 
 All share the same install pattern: `pip install -r projects/<slug>/requirements.txt` then run the project entrypoint.
 
@@ -60,6 +61,7 @@ Optional catalog field: set `reprise_link` in [`METADATA.yaml`](METADATA.yaml) w
 python projects/cartpole-dqn/train_cartpole_dqn.py
 python projects/pendulum-sac/train_pendulum_sac.py          # ~5–10 min on CPU
 python projects/multiagent-cartpole/train_multiagent_cartpole.py
+python projects/offline-marwil/run_pipeline.py              # record logs + MARWIL
 ```
 
 ## Use Case
@@ -96,7 +98,7 @@ Teams leave with a reproducible first success on Cloudera AI — train and evalu
 ## Key Features
 
 - Featured **Taxi PPO** cover demo on the current RLlib API stack
-- Companion projects: **DQN**, **SAC**, and **multi-agent PPO**
+- Companion projects: **DQN**, **SAC**, **multi-agent PPO**, and **offline MARWIL**
 - **Multi-project** layout (`projects/<slug>/`) with a documented learning path
 - Runnable scripts (plus Taxi notebook) with per-project pinned dependencies
 - **Workbench-ready** deploy and sizing guidance
@@ -193,6 +195,7 @@ Shared diagrams:
 | `projects/cartpole-dqn/` | DQN → CartPole-v1 |
 | `projects/pendulum-sac/` | SAC → Pendulum-v1 |
 | `projects/multiagent-cartpole/` | Multi-agent PPO → MultiAgentCartPole |
+| `projects/offline-marwil/` | MARWIL from logged CartPole episodes |
 | `LICENSE` | Apache License 2.0 |
 
 ## Prerequisites
@@ -211,6 +214,7 @@ Shared diagrams:
 | Cover demo (Taxi PPO) | 2 vCPU, 8 GB RAM, ~5 GB disk; GPU not required; &lt;1 min |
 | CartPole DQN / multi-agent CartPole | Same as cover; roughly 1–2 minutes |
 | Pendulum SAC | 2–4 vCPU, 8 GB RAM; ~5–10 minutes on CPU for the default 15-iter smoke run |
+| Offline MARWIL pipeline | 2–4 vCPU, 8 GB RAM; ~3–8 minutes (record + train) |
 | Larger / production-style workloads | 4+ vCPU, 16 GB RAM; GPU optional for bigger nets / image envs |
 
 See [deploy/README.md](deploy/README.md) for Workbench session guidance.
@@ -221,7 +225,7 @@ See [deploy/README.md](deploy/README.md) for Workbench session guidance.
 - [RL primer](docs/rl-primer.md)
 - [Deploy / sizing](deploy/README.md)
 - [Project index](projects/README.md)
-- [Taxi PPO](projects/taxi-ppo/README.md) · [CartPole DQN](projects/cartpole-dqn/README.md) · [Pendulum SAC](projects/pendulum-sac/README.md) · [Multi-Agent CartPole](projects/multiagent-cartpole/README.md)
+- [Taxi PPO](projects/taxi-ppo/README.md) · [CartPole DQN](projects/cartpole-dqn/README.md) · [Pendulum SAC](projects/pendulum-sac/README.md) · [Multi-Agent CartPole](projects/multiagent-cartpole/README.md) · [Offline MARWIL](projects/offline-marwil/README.md)
 - [RLlib docs](https://docs.ray.io/en/latest/rllib/index.html) · [RLlib algorithms](https://docs.ray.io/en/latest/rllib/rllib-algorithms.html)
 - [Cloudera AI documentation](https://docs.cloudera.com/)
 - [Proximal Policy Optimization (paper)](https://arxiv.org/abs/1707.06347)
@@ -234,6 +238,7 @@ See [deploy/README.md](deploy/README.md) for Workbench session guidance.
 | [**cartpole-dqn**](projects/cartpole-dqn/) | Companion | DQN | Off-policy discrete control on `CartPole-v1` |
 | [**pendulum-sac**](projects/pendulum-sac/) | Companion | SAC | Continuous control on `Pendulum-v1` |
 | [**multiagent-cartpole**](projects/multiagent-cartpole/) | Companion | Multi-agent PPO | Fleet controllers on `MultiAgentCartPole` |
+| [**offline-marwil**](projects/offline-marwil/) | Companion | MARWIL | Offline learning from logged CartPole trajectories |
 
 Add more under `projects/<slug>/` using the [project convention](projects/README.md).
 

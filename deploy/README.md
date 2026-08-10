@@ -10,6 +10,7 @@ This blueprint runs as code inside a **Cloudera AI Workbench** (or CML) session 
 | CartPole DQN | Python 3.10–3.12 | 2+ | 8 GB | No | ~1–2 min | `python projects/cartpole-dqn/train_cartpole_dqn.py` |
 | Pendulum SAC | Python 3.10–3.12 | 2–4 | 8 GB | No | ~5–10 min | `python projects/pendulum-sac/train_pendulum_sac.py` |
 | Multi-Agent CartPole | Python 3.10–3.12 | 2+ | 8 GB | No | ~1–2 min | `python projects/multiagent-cartpole/train_multiagent_cartpole.py` |
+| Offline MARWIL | Python 3.10–3.12 | 2–4 | 8 GB | No | ~3–8 min | `python projects/offline-marwil/run_pipeline.py` |
 
 Cover notebook: `projects/taxi-ppo/RayRLTest.ipynb`.
 
