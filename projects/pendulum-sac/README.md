@@ -66,16 +66,17 @@ python train_pendulum_sac.py
 
 ## Expected output
 
-Pendulum returns are **negative** (cost). Learning means the mean becomes **less negative** over time (e.g. −1200 → −400). A short smoke run may not fully solve the env (often near −200 when strong):
+Pendulum returns are **negative** (cost). Learning means the mean becomes **less negative** over time. Example from a local 15-iter run (~9 minutes on CPU):
 
 ```text
-iter=1   episode_return_mean=...
-…
-iter=15  episode_return_mean=...
-evaluate episode_return_mean=...
+iter=1   episode_return_mean=-1335.8  env_steps=1000.0
+iter=5   episode_return_mean=-250.6   env_steps=5000.0
+iter=9   episode_return_mean=-97.2    env_steps=9000.0
+iter=15  episode_return_mean=-162.5   env_steps=15000.0
+evaluate episode_return_mean=-120.8
 ```
 
-Ray may still print internal deprecation notices; they are harmless for this smoke test.
+Strong policies often land near **−200** or better; variance between iters is normal. Ray may still print internal deprecation notices; they are harmless for this smoke test.
 
 ## Architecture
 

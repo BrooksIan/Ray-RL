@@ -160,6 +160,7 @@ Shared diagrams:
 | `projects/taxi-ppo/` | Featured PPO → Taxi-v3 project |
 | `projects/cartpole-dqn/` | DQN → CartPole-v1 (off-policy companion) |
 | `projects/pendulum-sac/` | SAC → Pendulum-v1 (continuous control) |
+| `projects/multiagent-cartpole/` | Multi-agent PPO → MultiAgentCartPole |
 | `LICENSE` | Apache License 2.0 |
 
 ## Prerequisites
@@ -188,6 +189,7 @@ The Taxi-v3 smoke test typically finishes in under a minute on a laptop or small
 - [Taxi PPO project README](projects/taxi-ppo/README.md)
 - [CartPole DQN project README](projects/cartpole-dqn/README.md)
 - [Pendulum SAC project README](projects/pendulum-sac/README.md)
+- [Multi-Agent CartPole PPO README](projects/multiagent-cartpole/README.md)
 - [How to add a project](projects/README.md)
 - [RLlib docs](https://docs.ray.io/en/latest/rllib/index.html)
 - [Cloudera AI documentation](https://docs.cloudera.com/)
@@ -200,6 +202,7 @@ The Taxi-v3 smoke test typically finishes in under a minute on a laptop or small
 | [**taxi-ppo**](projects/taxi-ppo/) | Featured (cover) | Modern RLlib PPO on Gymnasium `Taxi-v3` |
 | [**cartpole-dqn**](projects/cartpole-dqn/) | Companion | Off-policy DQN on Gymnasium `CartPole-v1` |
 | [**pendulum-sac**](projects/pendulum-sac/) | Companion | Continuous-control SAC on Gymnasium `Pendulum-v1` |
+| [**multiagent-cartpole**](projects/multiagent-cartpole/) | Companion | Multi-agent PPO on `MultiAgentCartPole` (2 policies) |
 
 Add more under `projects/<slug>/` using the [project convention](projects/README.md).
 

@@ -9,6 +9,7 @@ Each subdirectory under `projects/` is a self-contained Ray RLlib example.
 | **Taxi PPO** (cover demo) | [`taxi-ppo/`](taxi-ppo/) | Modern RLlib PPO on Gymnasium `Taxi-v3` |
 | **CartPole DQN** | [`cartpole-dqn/`](cartpole-dqn/) | Off-policy DQN on Gymnasium `CartPole-v1` |
 | **Pendulum SAC** | [`pendulum-sac/`](pendulum-sac/) | Continuous-control SAC on Gymnasium `Pendulum-v1` |
+| **Multi-Agent CartPole PPO** | [`multiagent-cartpole/`](multiagent-cartpole/) | Multi-agent PPO on `MultiAgentCartPole` (fleet controllers) |
 
 ## Layout convention
 
