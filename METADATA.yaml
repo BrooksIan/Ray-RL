@@ -4,18 +4,34 @@
 # --- Identity ---
 name: "Ray RLlib on Cloudera AI"
 slug: "ray-rllib-on-cloudera-ai"
-description: "Learn Ray RLlib on Cloudera AI via Taxi pickup-and-delivery — a sequential dispatch task where RL learns a policy from delayed rewards."
+description: "Multi-project Ray RLlib labs on Cloudera AI — Taxi/PPO cover demo, plus CartPole/DQN, Pendulum/SAC, and multi-agent CartPole."
 long_description: >
   Learn distributed reinforcement learning with Ray RLlib on Cloudera AI Workbench.
-  The cover demo uses Gymnasium Taxi: navigate a grid, pick up a passenger, and drop
-  them at their destination. That sequential logistics task has delayed rewards and
-  many start configurations, so RL (PPO) is a better fit than supervised labels or a
-  single scripted route. Includes script + notebook, an RL primer, and a projects/
-  layout for more environments.
+  The cover demo uses Gymnasium Taxi with PPO (pickup-and-delivery, delayed rewards).
+  Companion projects add DQN on CartPole (off-policy discrete control), SAC on Pendulum
+  (continuous actuators), and multi-agent PPO on MultiAgentCartPole (fleet controllers).
+  Includes script entrypoints, a Taxi notebook, an RL primer, and Workbench deploy notes.
 reprise_link: "" # Optional: public Reprise / recorded walkthrough URL
 demo_entrypoint: "projects/taxi-ppo/train_taxi_ppo.py"
 demo_notebook: "projects/taxi-ppo/RayRLTest.ipynb"
 featured_project: "projects/taxi-ppo"
+projects:
+  - slug: taxi-ppo
+    path: projects/taxi-ppo
+    algorithm: PPO
+    status: featured
+  - slug: cartpole-dqn
+    path: projects/cartpole-dqn
+    algorithm: DQN
+    status: companion
+  - slug: pendulum-sac
+    path: projects/pendulum-sac
+    algorithm: SAC
+    status: companion
+  - slug: multiagent-cartpole
+    path: projects/multiagent-cartpole
+    algorithm: PPO-multiagent
+    status: companion
 
 # --- Classification (website filters) ---
 catalog_classification:
@@ -34,6 +50,9 @@ tags:
   - ray
   - rllib
   - ppo
+  - dqn
+  - sac
+  - multi-agent
   - gymnasium
   - pytorch
   - multi-project
@@ -44,7 +63,7 @@ product_mapping:
   - Cloudera AI
   - Cloudera AI Workbench
   - Cloudera Machine Learning
-model_dependencies: [] # Policy trained from scratch; no external foundation model required
+model_dependencies: [] # Policies trained from scratch; no external foundation model required
 
 # --- Provenance ---
 publisher: cloudera # cloudera | partner-name

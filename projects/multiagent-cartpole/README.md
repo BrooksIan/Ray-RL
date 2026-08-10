@@ -66,16 +66,16 @@ python train_multiagent_cartpole.py
 
 ## Expected output
 
-Per-agent returns should trend upward (CartPole-like survival scores). Example shape:
+Episode return (summed multi-agent survival signal) should trend upward. Example from a local 10-iter run (~40s):
 
 ```text
-iter=1  agent[0]=...  agent[1]=...  episode=...  env_steps=...
-…
-iter=10  agent[0]=...  agent[1]=...  episode=...  env_steps=...
-evaluate  agent[0]=...  agent[1]=...  episode=...
+iter=1   episode=47.9   env_steps=4000.0
+iter=5   episode=184.1  env_steps=20000.0
+iter=10  episode=395.8  env_steps=40000.0
+evaluate episode=415.4
 ```
 
-Ray may still print internal deprecation notices; they are harmless for this smoke test.
+When RLlib exposes per-agent / per-policy means, the script also prints those. Ray may still print internal deprecation notices; they are harmless for this smoke test.
 
 ## Architecture
 

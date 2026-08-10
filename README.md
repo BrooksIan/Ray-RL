@@ -1,10 +1,11 @@
 # Cloudera Blueprint: Ray RLlib on Cloudera AI
 
-> Multi-project **Ray RLlib** examples for Cloudera AI Workbench. The cover demo trains **PPO on Gymnasium Taxi-v3**. Catalog fields: [`METADATA.yaml`](METADATA.yaml).
+> Multi-project **Ray RLlib** examples for Cloudera AI Workbench. The cover demo trains **PPO on Gymnasium Taxi-v3**; companions add DQN, SAC, and multi-agent PPO. Catalog fields: [`METADATA.yaml`](METADATA.yaml).
 
 ## Table of Contents
 
 - [Overview](#overview)
+- [Learning path](#learning-path)
 - [Demo](#demo)
 - [Use Case](#use-case)
 - [Key Features](#key-features)
@@ -19,7 +20,20 @@
 
 ## Overview
 
-**Ray RLlib on Cloudera AI** helps ML engineers and architects learn distributed reinforcement learning where they already work — inside Cloudera AI Workbench. The blueprint ships a featured PPO → Taxi-v3 quickstart (script + notebook) on RLlib’s current EnvRunner / RLModule API, plus a `projects/` layout for adding more environments without rewriting the repo. Cloudera value: run Ray-based RL experiments on the same governed AI workbench used for notebooks, sessions, and team collaboration.
+**Ray RLlib on Cloudera AI** helps ML engineers and architects learn distributed reinforcement learning where they already work — inside Cloudera AI Workbench. The blueprint ships a featured PPO → Taxi-v3 quickstart on RLlib’s current EnvRunner / RLModule API, then a ladder of companion projects that teach off-policy discrete control (DQN), continuous actuators (SAC), and multi-agent fleets (multi-agent PPO). Cloudera value: run Ray-based RL experiments on the same governed AI workbench used for notebooks, sessions, and team collaboration.
+
+## Learning path
+
+Work through the projects in order — each adds one RLlib capability without leaving Gymnasium-scale demos:
+
+| Step | Project | Algorithm | What you learn |
+| --- | --- | --- | --- |
+| 1 (cover) | [`taxi-ppo`](projects/taxi-ppo/) | PPO | On-policy RL; delayed-reward logistics / dispatch |
+| 2 | [`cartpole-dqn`](projects/cartpole-dqn/) | DQN | Off-policy + replay; discrete process control |
+| 3 | [`pendulum-sac`](projects/pendulum-sac/) | SAC | Continuous torque / actuator control |
+| 4 | [`multiagent-cartpole`](projects/multiagent-cartpole/) | Multi-agent PPO | Policies, mapping fn, fleet-style controllers |
+
+All share the same install pattern: `pip install -r projects/<slug>/requirements.txt` then run the project entrypoint.
 
 ## Demo
 
@@ -39,6 +53,14 @@ Interactive twin: [`projects/taxi-ppo/RayRLTest.ipynb`](projects/taxi-ppo/RayRLT
 Sample output and troubleshooting: [`projects/taxi-ppo/README.md`](projects/taxi-ppo/README.md).
 
 Optional catalog field: set `reprise_link` in [`METADATA.yaml`](METADATA.yaml) when a recorded walkthrough is published.
+
+### Companion demos
+
+```bash
+python projects/cartpole-dqn/train_cartpole_dqn.py
+python projects/pendulum-sac/train_pendulum_sac.py          # ~5–10 min on CPU
+python projects/multiagent-cartpole/train_multiagent_cartpole.py
+```
 
 ## Use Case
 
@@ -65,17 +87,18 @@ That is the same shape as many enterprise control problems: route a resource, co
 
 RL fits because Taxi is a **sequential decision** problem with **delayed credit**: the valuable +20 arrives only after a chain of moves. Algorithms like PPO improve a policy by trial and error — try routes, take the penalties and bonuses, and reinforce behaviors that raise cumulative return.
 
-Taxi is intentionally small (500 discrete states, 6 actions), so you can see learning quickly on a laptop or Workbench session. The same RLlib loop later targets larger sims: robotics, recommendation pacing, industrial control, or custom Gymnasium environments.
+Taxi is intentionally small (500 discrete states, 6 actions), so you can see learning quickly on a laptop or Workbench session. Companion projects extend the same RLlib loop to discrete control (CartPole/DQN), continuous actuators (Pendulum/SAC), and multi-agent fleets (MultiAgentCartPole/PPO).
 
 ### Blueprint outcome
 
-Teams leave with a reproducible first success on Cloudera AI — train and evaluate PPO on Taxi-v3 in minutes — plus a `projects/` layout to grow beyond the cover demo without rewriting the repo.
+Teams leave with a reproducible first success on Cloudera AI — train and evaluate PPO on Taxi-v3 in minutes — then a clear ladder into off-policy, continuous, and multi-agent RLlib patterns under one repo.
 
 ## Key Features
 
 - Featured **Taxi PPO** cover demo on the current RLlib API stack
-- **Multi-project** layout (`projects/<slug>/`) for expanding beyond Taxi
-- Runnable **script + notebook** with pinned dependencies
+- Companion projects: **DQN**, **SAC**, and **multi-agent PPO**
+- **Multi-project** layout (`projects/<slug>/`) with a documented learning path
+- Runnable scripts (plus Taxi notebook) with per-project pinned dependencies
 - **Workbench-ready** deploy and sizing guidance
 - **RL primer** and diagrams for non-RL practitioners
 - Catalog-ready [`METADATA.yaml`](METADATA.yaml) (Apache-2.0)
@@ -105,11 +128,20 @@ Teams leave with a reproducible first success on Cloudera AI — train and evalu
 
 4. Or open [`projects/taxi-ppo/RayRLTest.ipynb`](projects/taxi-ppo/RayRLTest.ipynb) with that venv kernel.
 
+5. (Optional) Continue the ladder:
+
+   ```bash
+   pip install -r projects/cartpole-dqn/requirements.txt
+   python projects/cartpole-dqn/train_cartpole_dqn.py
+   ```
+
 **Cloudera AI Workbench:** start a Python session (≥2 vCPU / 8 GB), clone or open this repo, then run the same install + entrypoint steps. Full guide: [docs/getting-started.md](docs/getting-started.md).
 
 Apple Silicon: [Ray M-series install notes](https://docs.ray.io/en/latest/ray-overview/installation.html#m1-mac-apple-silicon-support).
 
 ## Software Components
+
+Cover demo (Taxi PPO):
 
 ```text
 Cloudera AI Workbench (session / notebook)
@@ -129,10 +161,10 @@ Cloudera AI Workbench (session / notebook)
 | Component | Role |
 | --- | --- |
 | Cloudera AI Workbench | Runtime for sessions, notebooks, and team projects |
-| Ray RLlib | Distributed RL algorithms and training loop |
+| Ray RLlib | Distributed RL (PPO, DQN, SAC, multi-agent) |
 | PyTorch | Default deep learning backend for RLModules |
-| Gymnasium | Standard RL environments (`Taxi-v3` cover demo) |
-| `projects/taxi-ppo` | Featured entrypoint, notebook, and pins |
+| Gymnasium | Standard envs (`Taxi-v3`, `CartPole-v1`, `Pendulum-v1`) |
+| `projects/*` | Self-contained demos (script, pins, README) |
 
 Shared diagrams:
 
@@ -156,53 +188,52 @@ Shared diagrams:
 | `assets/` | Diagrams and shared media |
 | `deploy/` | Workbench / session deployment notes |
 | `docs/` | Getting started, RL primer, doc index |
-| `projects/` | Self-contained RLlib examples |
-| `projects/taxi-ppo/` | Featured PPO → Taxi-v3 project |
-| `projects/cartpole-dqn/` | DQN → CartPole-v1 (off-policy companion) |
-| `projects/pendulum-sac/` | SAC → Pendulum-v1 (continuous control) |
+| `projects/` | Self-contained RLlib examples ([index](projects/README.md)) |
+| `projects/taxi-ppo/` | Featured PPO → Taxi-v3 |
+| `projects/cartpole-dqn/` | DQN → CartPole-v1 |
+| `projects/pendulum-sac/` | SAC → Pendulum-v1 |
 | `projects/multiagent-cartpole/` | Multi-agent PPO → MultiAgentCartPole |
 | `LICENSE` | Apache License 2.0 |
 
 ## Prerequisites
 
 - Python **3.10–3.12**, `pip`, and `git`
-- Cover demo packages: [`projects/taxi-ppo/requirements.txt`](projects/taxi-ppo/requirements.txt) (`ray[rllib]==2.56.1`, PyTorch, Gymnasium)
+- Per-project packages (same core pins): `ray[rllib]==2.56.1`, PyTorch, Gymnasium — see each `projects/*/requirements.txt`
 - Cloudera AI Workbench or CML project access (for platform runs)
 - Outbound PyPI (or internal mirror) for dependency install
-- Optional: Jupyter / VS Code / Cursor for the notebook
-- No external model API keys for the Taxi cover demo
+- Optional: Jupyter / VS Code / Cursor for the Taxi notebook
+- No external model API keys for these demos
 
 ## Hardware Requirements
 
 | Deployment | Minimum |
 | --- | --- |
-| Launchable / demo (Taxi PPO) | 2 vCPU, 8 GB RAM, ~5 GB disk for deps; GPU not required |
-| Production / larger envs | 4+ vCPU, 16 GB RAM; GPU optional for larger nets / image envs |
+| Cover demo (Taxi PPO) | 2 vCPU, 8 GB RAM, ~5 GB disk; GPU not required; &lt;1 min |
+| CartPole DQN / multi-agent CartPole | Same as cover; roughly 1–2 minutes |
+| Pendulum SAC | 2–4 vCPU, 8 GB RAM; ~5–10 minutes on CPU for the default 15-iter smoke run |
+| Larger / production-style workloads | 4+ vCPU, 16 GB RAM; GPU optional for bigger nets / image envs |
 
-The Taxi-v3 smoke test typically finishes in under a minute on a laptop or small Workbench session. See [deploy/README.md](deploy/README.md) for scaling notes.
+See [deploy/README.md](deploy/README.md) for Workbench session guidance.
 
 ## Documentation
 
 - [Getting started on Cloudera AI Workbench](docs/getting-started.md)
 - [RL primer](docs/rl-primer.md)
 - [Deploy / sizing](deploy/README.md)
-- [Taxi PPO project README](projects/taxi-ppo/README.md)
-- [CartPole DQN project README](projects/cartpole-dqn/README.md)
-- [Pendulum SAC project README](projects/pendulum-sac/README.md)
-- [Multi-Agent CartPole PPO README](projects/multiagent-cartpole/README.md)
-- [How to add a project](projects/README.md)
-- [RLlib docs](https://docs.ray.io/en/latest/rllib/index.html)
+- [Project index](projects/README.md)
+- [Taxi PPO](projects/taxi-ppo/README.md) · [CartPole DQN](projects/cartpole-dqn/README.md) · [Pendulum SAC](projects/pendulum-sac/README.md) · [Multi-Agent CartPole](projects/multiagent-cartpole/README.md)
+- [RLlib docs](https://docs.ray.io/en/latest/rllib/index.html) · [RLlib algorithms](https://docs.ray.io/en/latest/rllib/rllib-algorithms.html)
 - [Cloudera AI documentation](https://docs.cloudera.com/)
 - [Proximal Policy Optimization (paper)](https://arxiv.org/abs/1707.06347)
 
 ## Projects
 
-| Project | Status | Description |
-| --- | --- | --- |
-| [**taxi-ppo**](projects/taxi-ppo/) | Featured (cover) | Modern RLlib PPO on Gymnasium `Taxi-v3` |
-| [**cartpole-dqn**](projects/cartpole-dqn/) | Companion | Off-policy DQN on Gymnasium `CartPole-v1` |
-| [**pendulum-sac**](projects/pendulum-sac/) | Companion | Continuous-control SAC on Gymnasium `Pendulum-v1` |
-| [**multiagent-cartpole**](projects/multiagent-cartpole/) | Companion | Multi-agent PPO on `MultiAgentCartPole` (2 policies) |
+| Project | Status | Algorithm | Description |
+| --- | --- | --- | --- |
+| [**taxi-ppo**](projects/taxi-ppo/) | Featured (cover) | PPO | Discrete logistics on Gymnasium `Taxi-v3` |
+| [**cartpole-dqn**](projects/cartpole-dqn/) | Companion | DQN | Off-policy discrete control on `CartPole-v1` |
+| [**pendulum-sac**](projects/pendulum-sac/) | Companion | SAC | Continuous control on `Pendulum-v1` |
+| [**multiagent-cartpole**](projects/multiagent-cartpole/) | Companion | Multi-agent PPO | Fleet controllers on `MultiAgentCartPole` |
 
 Add more under `projects/<slug>/` using the [project convention](projects/README.md).
 

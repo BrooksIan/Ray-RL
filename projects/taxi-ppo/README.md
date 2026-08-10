@@ -107,3 +107,12 @@ Eval EnvRunner (manual algo.evaluate())
 - See [`requirements.txt`](requirements.txt) (`ray[rllib]==2.56.1`, Torch, Gymnasium)
 
 Apple Silicon: [Ray M-series install notes](https://docs.ray.io/en/latest/ray-overview/installation.html#m1-mac-apple-silicon-support).
+
+## See also
+
+Next steps in the blueprint ladder:
+
+- [CartPole DQN](../cartpole-dqn/) — off-policy discrete control
+- [Pendulum SAC](../pendulum-sac/) — continuous actuators
+- [Multi-Agent CartPole PPO](../multiagent-cartpole/) — fleet / policy mapping
+- [Project index](../README.md) · [Cover README](../../README.md)
