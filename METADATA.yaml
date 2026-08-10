@@ -2,9 +2,9 @@
 # Populate fields used by the master blueprint website and internal catalog.
 
 # --- Identity ---
-name: "Ray RLlib Quickstart on Cloudera AI"
-slug: "ray-rllib-quickstart"
-description: "Train a modern Ray RLlib PPO agent on Gymnasium Taxi-v3 — concepts, notebook, and a runnable script for Cloudera AI Workbench."
+name: "Ray RLlib on Cloudera AI"
+slug: "ray-rllib-on-cloudera-ai"
+description: "Multi-project Ray RLlib examples for Cloudera AI — featured cover demo trains modern PPO on Gymnasium Taxi-v3."
 reprise_link: "" # Add public Reprise / demo walkthrough URL when available
 
 # --- Classification (website filters) ---
@@ -26,13 +26,14 @@ tags:
   - ppo
   - gymnasium
   - pytorch
+  - multi-project
 
 # --- Relationships ---
 product_mapping: # Cloudera products used
   - Cloudera Machine Learning
   - Cloudera AI Workbench
 # model_dependencies: # Models, embeddings, or external AI services, if any. Comment out if none.
-# - none for this quickstart (policy trained from scratch)
+# - none for the taxi-ppo quickstart (policy trained from scratch)
 
 # --- Provenance ---
 publisher: cloudera # cloudera | partner-name
@@ -41,6 +42,7 @@ source: Internal # Internal | Partner | NVIDIA Adaptation | Customer
 # --- Repository & assets ---
 public_github_link: "https://github.com/BrooksIan/Ray-RL"
 #private_github_link: "" # If applicable, original repo during development
+featured_project: "projects/taxi-ppo"
 
 # --- Ownership ---
 maintainer_name: "Ian Brooks"
