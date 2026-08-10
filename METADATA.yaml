@@ -4,12 +4,14 @@
 # --- Identity ---
 name: "Ray RLlib on Cloudera AI"
 slug: "ray-rllib-on-cloudera-ai"
-description: "Multi-project Ray RLlib examples for Cloudera AI — featured cover demo trains modern PPO on Gymnasium Taxi-v3."
+description: "Learn Ray RLlib on Cloudera AI via Taxi pickup-and-delivery — a sequential dispatch task where RL learns a policy from delayed rewards."
 long_description: >
   Learn distributed reinforcement learning with Ray RLlib on Cloudera AI Workbench.
-  Start with a modern PPO training loop on Taxi-v3 (script + notebook), then add more
-  self-contained projects under projects/. Includes an RL primer, architecture notes,
-  and Workbench deployment guidance.
+  The cover demo uses Gymnasium Taxi: navigate a grid, pick up a passenger, and drop
+  them at their destination. That sequential logistics task has delayed rewards and
+  many start configurations, so RL (PPO) is a better fit than supervised labels or a
+  single scripted route. Includes script + notebook, an RL primer, and a projects/
+  layout for more environments.
 reprise_link: "" # Optional: public Reprise / recorded walkthrough URL
 demo_entrypoint: "projects/taxi-ppo/train_taxi_ppo.py"
 demo_notebook: "projects/taxi-ppo/RayRLTest.ipynb"

@@ -11,6 +11,43 @@ This is the **cover demo** for the [Ray RLlib on Cloudera AI](../../README.md) b
 | Workbench guide | [docs/getting-started.md](../../docs/getting-started.md) |
 | Catalog metadata | [`METADATA.yaml`](../../METADATA.yaml) (`featured_project`) |
 
+## The problem: what Taxi is asking the agent to do
+
+Taxi is a miniature **pickup-and-delivery** job on a 5×5 city grid:
+
+```text
++---------+
+|R: | : :G|
+| : | : : |
+| : : : : |
+| | : | : |
+|Y| : |B: |
++---------+
+```
+
+- **R / G / Y / B** are the only legal passenger stands and destinations.
+- Each episode samples a taxi start, a passenger location, and a destination.
+- The agent must: navigate → **pickup** → navigate → **drop-off**.
+- **Actions (6):** move south / north / east / west, pickup, drop-off.
+- **Rewards:** `+20` correct delivery, `-1` each step, `-10` illegal pickup/drop-off.
+
+So the “problem being solved” is not predicting a label. It is learning a **driving/dispatch policy**: from any valid situation, choose moves that deliver the passenger quickly and legally.
+
+In enterprise terms, that maps to sequential logistics — get an asset to a job, complete the handoff, finish at the right place — where success is measured over a whole trajectory.
+
+## Why RL (not supervised learning) 
+
+Supervised models shine when you already have `(state → correct action)` examples. Taxi does not give you that. It gives you an environment and a score. The right action now depends on passenger location, destination, and whether they are already in the cab — and the big bonus arrives only at the end.
+
+That is exactly when RL is the better tool:
+
+1. **Delayed reward** — delivery credit is sparse; step cost teaches efficiency.
+2. **Many scenarios, one policy** — hundreds of start configurations; you want generalization, not one hard-coded path.
+3. **Interactive feedback** — illegal pickups and wasted steps are experienced, then avoided.
+4. **Same pattern as real control** — fleet routing, warehouse robots, and ops playbooks grow from this loop; Taxi is the readable sandbox.
+
+Could you hand-write rules for this tiny map? Yes. That misses the point of the demo: learn a policy from rewards with the same RLlib stack you will use when the simulator is too large to script.
+
 ## Quickstart
 
 From the repository root:

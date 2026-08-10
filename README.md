@@ -42,11 +42,34 @@ Optional catalog field: set `reprise_link` in [`METADATA.yaml`](METADATA.yaml) w
 
 ## Use Case
 
-**Problem:** Teams new to RL struggle to connect vocabulary (observation, reward, policy) to a modern distributed stack, and many tutorials use outdated RLlib APIs.
+### What the Taxi problem solves
 
-**Outcome:** A reproducible first success on Cloudera AI — train and evaluate PPO on Taxi-v3 in minutes — with a clear path to grow a library of RL projects (new envs, algorithms, multi-agent) under one blueprint.
+[Gymnasium Taxi](https://gymnasium.farama.org/environments/toy_text/taxi/) is a small **dispatch-and-delivery** puzzle that stands in for real sequential logistics:
 
-Relevant for control-style decisioning exploration: simulation, operations research prototypes, robotics labs, and sequential decision POCs before production hardening.
+1. A taxi starts somewhere on a 5×5 grid (with walls).
+2. A passenger waits at one of four stands (Red / Green / Yellow / Blue).
+3. The agent must **drive to the passenger**, **pick them up**, **drive to their destination**, and **drop them off**.
+4. The episode ends on a successful drop-off (or after a time limit).
+
+Rewards encode the business goal: **+20** for a correct delivery, **−1** per time step (faster routes win), and **−10** for illegal pickup/drop-off. There is no labeled dataset of “correct moves” — only this scoreboard after each action.
+
+That is the same shape as many enterprise control problems: route a resource, complete a multi-step job, and optimize long-horizon return under constraints — not classify a single row of features.
+
+### Why reinforcement learning is the right fit
+
+| Approach | Why it falls short here |
+| --- | --- |
+| Supervised learning | Needs labeled “best action” per state. In Taxi (and real dispatch), you rarely have that oracle; you only have outcomes after a sequence of decisions. |
+| Fixed rules / one shortest path | Can hard-code this tiny map, but every new passenger/destination pair is a different task. You want one **policy** that generalizes across ~300 start configurations, not a single scripted route. |
+| Open-loop planning only | Works when the world is tiny and static. RL is how you *learn* a policy from interaction when the state space, stochasticity, or environment complexity grows (fleet size, traffic, custom sims). |
+
+RL fits because Taxi is a **sequential decision** problem with **delayed credit**: the valuable +20 arrives only after a chain of moves. Algorithms like PPO improve a policy by trial and error — try routes, take the penalties and bonuses, and reinforce behaviors that raise cumulative return.
+
+Taxi is intentionally small (500 discrete states, 6 actions), so you can see learning quickly on a laptop or Workbench session. The same RLlib loop later targets larger sims: robotics, recommendation pacing, industrial control, or custom Gymnasium environments.
+
+### Blueprint outcome
+
+Teams leave with a reproducible first success on Cloudera AI — train and evaluate PPO on Taxi-v3 in minutes — plus a `projects/` layout to grow beyond the cover demo without rewriting the repo.
 
 ## Key Features
 
