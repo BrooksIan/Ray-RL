@@ -2,7 +2,14 @@
 
 Train **Proximal Policy Optimization (PPO)** on Gymnasium [`Taxi-v3`](https://gymnasium.farama.org/environments/toy_text/taxi/) with the current Ray RLlib API stack.
 
-This is the **cover demo** for the Ray-RL blueprint.
+This is the **cover demo** for the [Ray RLlib on Cloudera AI](../../README.md) blueprint.
+
+| | |
+| --- | --- |
+| Entrypoint | `train_taxi_ppo.py` |
+| Notebook | `RayRLTest.ipynb` |
+| Workbench guide | [docs/getting-started.md](../../docs/getting-started.md) |
+| Catalog metadata | [`METADATA.yaml`](../../METADATA.yaml) (`featured_project`) |
 
 ## Quickstart
 

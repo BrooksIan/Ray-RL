@@ -1,20 +1,28 @@
 # Cloudera Blueprint catalog metadata
-# Populate fields used by the master blueprint website and internal catalog.
+# Fields used by the master blueprint website and internal catalog.
 
 # --- Identity ---
 name: "Ray RLlib on Cloudera AI"
 slug: "ray-rllib-on-cloudera-ai"
 description: "Multi-project Ray RLlib examples for Cloudera AI — featured cover demo trains modern PPO on Gymnasium Taxi-v3."
-reprise_link: "" # Add public Reprise / demo walkthrough URL when available
+long_description: >
+  Learn distributed reinforcement learning with Ray RLlib on Cloudera AI Workbench.
+  Start with a modern PPO training loop on Taxi-v3 (script + notebook), then add more
+  self-contained projects under projects/. Includes an RL primer, architecture notes,
+  and Workbench deployment guidance.
+reprise_link: "" # Optional: public Reprise / recorded walkthrough URL
+demo_entrypoint: "projects/taxi-ppo/train_taxi_ppo.py"
+demo_notebook: "projects/taxi-ppo/RayRLTest.ipynb"
+featured_project: "projects/taxi-ppo"
 
 # --- Classification (website filters) ---
 catalog_classification:
   - Developer Example # Options: Enterprise Blueprint | Research | Launchable (AMP) | Developer Example
-launchable: false # true | false
-lifecycle_status: Active # e.g., Active | Deprecated
+launchable: false
+lifecycle_status: Active # Active | Deprecated
 
 # --- Industry & alignment ---
-industry: General # e.g., General | Telecom | Financial Services | Healthcare & Life Sciences | Retail | Media | Physical AI & Robotics
+industry: General # General | Telecom | Financial Services | Healthcare & Life Sciences | Retail | Media | Physical AI & Robotics
 industry_alignment: "Horizontal" # Horizontal | Vertical
 target_vertical: "" # Optional finer-grained vertical
 
@@ -27,13 +35,14 @@ tags:
   - gymnasium
   - pytorch
   - multi-project
+  - cloudera-ai
 
 # --- Relationships ---
-product_mapping: # Cloudera products used
-  - Cloudera Machine Learning
+product_mapping:
+  - Cloudera AI
   - Cloudera AI Workbench
-# model_dependencies: # Models, embeddings, or external AI services, if any. Comment out if none.
-# - none for the taxi-ppo quickstart (policy trained from scratch)
+  - Cloudera Machine Learning
+model_dependencies: [] # Policy trained from scratch; no external foundation model required
 
 # --- Provenance ---
 publisher: cloudera # cloudera | partner-name
@@ -41,13 +50,19 @@ source: Internal # Internal | Partner | NVIDIA Adaptation | Customer
 
 # --- Repository & assets ---
 public_github_link: "https://github.com/BrooksIan/Ray-RL"
-#private_github_link: "" # If applicable, original repo during development
-featured_project: "projects/taxi-ppo"
+#private_github_link: ""
+license: "Apache-2.0"
+language: "Python"
+python_versions:
+  - "3.10"
+  - "3.11"
+  - "3.12"
 
 # --- Ownership ---
 maintainer_name: "Ian Brooks"
+maintainer_email: "ibrooks@cloudera.com"
 
 # --- Dates ---
 date_created: "2023-11-08"
 date_updated: "2026-08-10"
-published_date: "2026-08-10" # Published date / last modified
+published_date: "2026-08-10"
