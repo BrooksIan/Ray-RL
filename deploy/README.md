@@ -71,7 +71,7 @@ Log `episode_return_mean` (and eval return) to MLflow — useful when Workbench 
 
 ```bash
 pip install mlflow
-export MLFLOW_TRACKING_URI=./mlruns   # or your Workbench / remote URI
+export MLFLOW_TRACKING_URI=sqlite:///./mlflow.db   # or your Workbench / remote URI
 export RAY_RL_MLFLOW=1
 python projects/taxi-ppo/train_taxi_ppo.py
 ```
@@ -85,7 +85,7 @@ Details: [mlflow.md](mlflow.md).
 | vCPU | 4–16+ depending on `num_env_runners` |
 | Memory | 16 GB+ |
 | GPU | Optional; enable when switching to larger nets / image envs |
-| Storage | Space for `ray_results/`, checkpoints, offline Parquet, and `mlruns/` |
+| Storage | Space for `ray_results/`, checkpoints, offline Parquet, and `mlflow.db` / artifacts |
 | Scaling | Raise EnvRunners first; then consider multi-node Ray |
 
 Exact hyperparams stay in each project’s script and README.

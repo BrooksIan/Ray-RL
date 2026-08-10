@@ -85,7 +85,7 @@ Sizing table: [deploy/README.md](../../deploy/README.md#multi-worker-ray-on-work
 ```bash
 pip install mlflow
 export RAY_RL_MLFLOW=1
-export MLFLOW_TRACKING_URI=./mlruns
+export MLFLOW_TRACKING_URI=sqlite:///./mlflow.db
 python projects/taxi-ppo/train_taxi_ppo.py
 ```
 
