@@ -9,6 +9,7 @@ This is the blueprint’s offline / “ops logs” lab: when rolling out a live 
 | Record logs | `record_cartpole_logs.py` |
 | Train offline | `train_offline_marwil.py` |
 | One-shot smoke | `run_pipeline.py` |
+| Notebook | [`offline_bc.ipynb`](offline_bc.ipynb) |
 | Smoke algorithm | Behavior Cloning (`BCConfig`) |
 | Optional upgrade | MARWIL (`MARWILConfig`, `beta>0`) |
 | Env (spaces + eval) | `CartPole-v1` |
@@ -52,6 +53,8 @@ pip install -r projects/offline-marwil/requirements.txt
 python projects/offline-marwil/run_pipeline.py
 ```
 
+Notebook twin: [`offline_bc.ipynb`](offline_bc.ipynb) (record → Ray shutdown → train cells).
+
 Or step by step:
 
 ```bash
@@ -60,6 +63,30 @@ python projects/offline-marwil/train_offline_marwil.py
 ```
 
 Generated data lives under `projects/offline-marwil/data/` (gitignored). Re-run record to refresh logs.
+
+## Bring your own Parquet logs
+
+Skip the PPO recorder when you already have RLlib-compatible offline files (for example, exports sitting on a Workbench mount or object store synced locally):
+
+```bash
+# Episode Parquet produced by RLlib offline_data(output=..., output_write_episodes=True)
+python projects/offline-marwil/train_offline_marwil.py \
+  --input /path/to/your/episode_parquet_dir
+
+# Same via env (handy in Workbench jobs):
+export RAY_RL_OFFLINE_INPUT=/path/to/your/episode_parquet_dir
+python projects/offline-marwil/train_offline_marwil.py
+```
+
+| Flag / env | Meaning |
+| --- | --- |
+| `--input PATH` | Directory (or file) of Parquet logs |
+| `RAY_RL_OFFLINE_INPUT` | Default for `--input` when the flag is omitted |
+| `--timesteps` | Columnar timestep rows instead of episode objects (`input_read_episodes=False`) |
+
+**Expected format for this smoke:** RLlib episode Parquet as written by `record_cartpole_logs.py` (nested under something like `…/cartpoleenv/run-…/*.parquet`, schema typically a binary `item` column). Spaces must match `CartPole-v1` for evaluation. For other envs, change `.environment(...)` in `train_offline_marwil.py` to match your data.
+
+Optional MLflow: see [deploy/mlflow.md](../../deploy/mlflow.md).
 
 ## What success looks like
 

@@ -4,15 +4,16 @@
 | --- | --- |
 | [Getting started (Workbench)](getting-started.md) | Developers / SEs deploying on Cloudera AI |
 | [RL primer](rl-primer.md) | Readers new to reinforcement learning |
-| [Deploy notes](../deploy/README.md) | Platform / session sizing |
+| [Deploy notes](../deploy/README.md) | Platform / session sizing + multi-worker Ray |
+| [MLflow tracking](../deploy/mlflow.md) | Optional episode-return experiment tracking |
 | [Project index](../projects/README.md) | Learning path + how to add projects |
 
 ## Projects
 
-| Project | Doc |
-| --- | --- |
-| Taxi PPO (cover) | [projects/taxi-ppo/README.md](../projects/taxi-ppo/README.md) |
-| CartPole DQN | [projects/cartpole-dqn/README.md](../projects/cartpole-dqn/README.md) |
-| Pendulum SAC | [projects/pendulum-sac/README.md](../projects/pendulum-sac/README.md) |
-| Multi-Agent CartPole PPO | [projects/multiagent-cartpole/README.md](../projects/multiagent-cartpole/README.md) |
-| Offline MARWIL | [projects/offline-marwil/README.md](../projects/offline-marwil/README.md) |
+| Project | Doc | Notebook |
+| --- | --- | --- |
+| Taxi PPO (cover) | [README](../projects/taxi-ppo/README.md) | [RayRLTest.ipynb](../projects/taxi-ppo/RayRLTest.ipynb) |
+| CartPole DQN | [README](../projects/cartpole-dqn/README.md) | [cartpole_dqn.ipynb](../projects/cartpole-dqn/cartpole_dqn.ipynb) |
+| Pendulum SAC | [README](../projects/pendulum-sac/README.md) | [pendulum_sac.ipynb](../projects/pendulum-sac/pendulum_sac.ipynb) |
+| Multi-Agent CartPole PPO | [README](../projects/multiagent-cartpole/README.md) | [multiagent_cartpole.ipynb](../projects/multiagent-cartpole/multiagent_cartpole.ipynb) |
+| Offline BC / MARWIL | [README](../projects/offline-marwil/README.md) | [offline_bc.ipynb](../projects/offline-marwil/offline_bc.ipynb) |

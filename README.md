@@ -49,7 +49,15 @@ Primary demo (no Reprise recording required):
 
 3. Confirm episode return improves across five iterations, then an `evaluate` line prints.
 
-Interactive twin: [`projects/taxi-ppo/RayRLTest.ipynb`](projects/taxi-ppo/RayRLTest.ipynb).
+Interactive twins (same venv / `requirements.txt` as each project):
+
+| Project | Notebook |
+| --- | --- |
+| Taxi PPO (cover) | [`projects/taxi-ppo/RayRLTest.ipynb`](projects/taxi-ppo/RayRLTest.ipynb) |
+| CartPole DQN | [`projects/cartpole-dqn/cartpole_dqn.ipynb`](projects/cartpole-dqn/cartpole_dqn.ipynb) |
+| Pendulum SAC | [`projects/pendulum-sac/pendulum_sac.ipynb`](projects/pendulum-sac/pendulum_sac.ipynb) |
+| Multi-Agent CartPole | [`projects/multiagent-cartpole/multiagent_cartpole.ipynb`](projects/multiagent-cartpole/multiagent_cartpole.ipynb) |
+| Offline BC | [`projects/offline-marwil/offline_bc.ipynb`](projects/offline-marwil/offline_bc.ipynb) |
 
 Sample output and troubleshooting: [`projects/taxi-ppo/README.md`](projects/taxi-ppo/README.md).
 
@@ -61,8 +69,11 @@ Optional catalog field: set `reprise_link` in [`METADATA.yaml`](METADATA.yaml) w
 python projects/cartpole-dqn/train_cartpole_dqn.py
 python projects/pendulum-sac/train_pendulum_sac.py          # ~5–10 min on CPU
 python projects/multiagent-cartpole/train_multiagent_cartpole.py
-python projects/offline-marwil/run_pipeline.py              # record logs + MARWIL
+python projects/offline-marwil/run_pipeline.py              # record logs + offline BC
+python projects/taxi-ppo/train_taxi_ppo.py --num-env-runners 4   # larger Workbench session
 ```
+
+Platform extras: [multi-worker sizing](deploy/README.md#multi-worker-ray-on-workbench) · [MLflow](deploy/mlflow.md) · [BYO Parquet offline](projects/offline-marwil/README.md#bring-your-own-parquet-logs)
 
 ## Use Case
 
@@ -188,7 +199,8 @@ Shared diagrams:
 | `METADATA.yaml` | Catalog metadata for the Cloudera blueprint website |
 | `README.md` | Cover page — business + onboarding content |
 | `assets/` | Diagrams and shared media |
-| `deploy/` | Workbench / session deployment notes |
+| `deploy/` | Workbench sizing, multi-worker Ray, optional MLflow |
+| `projects/common/` | Shared helpers (e.g. optional MLflow tracker) |
 | `docs/` | Getting started, RL primer, doc index |
 | `projects/` | Self-contained RLlib examples ([index](projects/README.md)) |
 | `projects/taxi-ppo/` | Featured PPO → Taxi-v3 |
@@ -223,7 +235,7 @@ See [deploy/README.md](deploy/README.md) for Workbench session guidance.
 
 - [Getting started on Cloudera AI Workbench](docs/getting-started.md)
 - [RL primer](docs/rl-primer.md)
-- [Deploy / sizing](deploy/README.md)
+- [Deploy / sizing / multi-worker](deploy/README.md) · [MLflow tracking](deploy/mlflow.md)
 - [Project index](projects/README.md)
 - [Taxi PPO](projects/taxi-ppo/README.md) · [CartPole DQN](projects/cartpole-dqn/README.md) · [Pendulum SAC](projects/pendulum-sac/README.md) · [Multi-Agent CartPole](projects/multiagent-cartpole/README.md) · [Offline MARWIL](projects/offline-marwil/README.md)
 - [RLlib docs](https://docs.ray.io/en/latest/rllib/index.html) · [RLlib algorithms](https://docs.ray.io/en/latest/rllib/rllib-algorithms.html)

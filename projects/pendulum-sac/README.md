@@ -7,6 +7,7 @@ Completes the cover ladder with **continuous** control: [Taxi PPO](../taxi-ppo/)
 | | |
 | --- | --- |
 | Entrypoint | `train_pendulum_sac.py` |
+| Notebook | [`pendulum_sac.ipynb`](pendulum_sac.ipynb) |
 | Algorithm | SAC (`SACConfig`) |
 | Env | `Pendulum-v1` |
 | Workbench guide | [docs/getting-started.md](../../docs/getting-started.md) |
@@ -57,6 +58,8 @@ cd projects/pendulum-sac
 pip install -r requirements.txt
 python train_pendulum_sac.py
 ```
+
+Notebook twin: [`pendulum_sac.ipynb`](pendulum_sac.ipynb) (select the same venv kernel; ~5–10 min).
 
 ## What it does
 

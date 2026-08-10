@@ -70,11 +70,32 @@ python train_taxi_ppo.py
 
 Notebook twin: [`RayRLTest.ipynb`](RayRLTest.ipynb) (select the same venv kernel).
 
+### Scale EnvRunners on a larger Workbench session
+
+```bash
+# Example: 8 vCPU session → ~4 rollout workers
+python projects/taxi-ppo/train_taxi_ppo.py --num-env-runners 4 --train-iters 10
+# or: export RAY_RL_NUM_ENV_RUNNERS=4
+```
+
+Sizing table: [deploy/README.md](../../deploy/README.md#multi-worker-ray-on-workbench).
+
+### Optional MLflow
+
+```bash
+pip install mlflow
+export RAY_RL_MLFLOW=1
+export MLFLOW_TRACKING_URI=./mlruns
+python projects/taxi-ppo/train_taxi_ppo.py
+```
+
+Details: [deploy/mlflow.md](../../deploy/mlflow.md).
+
 ## What it does
 
-1. Configure PPO on `Taxi-v3` with two EnvRunners
+1. Configure PPO on `Taxi-v3` with configurable EnvRunners (default 2)
 2. Flatten discrete Taxi observations with `FlattenObservations`
-3. Train for five iterations, evaluate, then `algo.stop()`
+3. Train for five iterations (override with `--train-iters`), evaluate, then `algo.stop()`
 
 ## Expected output
 

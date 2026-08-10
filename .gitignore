@@ -18,6 +18,10 @@ ray_results/
 # Generated offline RL datasets / local checkpoints
 projects/**/data/
 
+# Optional local MLflow file store
+mlruns/
+mlartifacts/
+
 # IDE
 .idea/
 .vscode/

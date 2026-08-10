@@ -7,6 +7,7 @@ This project highlights RLlib’s multi-agent surface: **policies**, **policy ma
 | | |
 | --- | --- |
 | Entrypoint | `train_multiagent_cartpole.py` |
+| Notebook | [`multiagent_cartpole.ipynb`](multiagent_cartpole.ipynb) |
 | Algorithm | PPO (`PPOConfig`) + `.multi_agent(...)` |
 | Env | `MultiAgentCartPole` (`num_agents=2`) |
 | Workbench guide | [docs/getting-started.md](../../docs/getting-started.md) |
@@ -57,6 +58,8 @@ cd projects/multiagent-cartpole
 pip install -r requirements.txt
 python train_multiagent_cartpole.py
 ```
+
+Notebook twin: [`multiagent_cartpole.ipynb`](multiagent_cartpole.ipynb) (select the same venv kernel).
 
 ## What it does
 

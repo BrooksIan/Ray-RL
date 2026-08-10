@@ -4,13 +4,13 @@ Each subdirectory under `projects/` is a self-contained Ray RLlib example.
 
 ## Learning path
 
-| Step | Project | Path | Algorithm | Summary |
-| --- | --- | --- | --- | --- |
-| 1 | **Taxi PPO** (cover) | [`taxi-ppo/`](taxi-ppo/) | PPO | Discrete logistics on `Taxi-v3` |
-| 2 | **CartPole DQN** | [`cartpole-dqn/`](cartpole-dqn/) | DQN | Off-policy discrete control on `CartPole-v1` |
-| 3 | **Pendulum SAC** | [`pendulum-sac/`](pendulum-sac/) | SAC | Continuous control on `Pendulum-v1` |
-| 4 | **Multi-Agent CartPole PPO** | [`multiagent-cartpole/`](multiagent-cartpole/) | Multi-agent PPO | Fleet controllers on `MultiAgentCartPole` |
-| 5 | **Offline MARWIL** | [`offline-marwil/`](offline-marwil/) | MARWIL | Learn from logged CartPole trajectories |
+| Step | Project | Path | Algorithm | Notebook | Summary |
+| --- | --- | --- | --- | --- | --- |
+| 1 | **Taxi PPO** (cover) | [`taxi-ppo/`](taxi-ppo/) | PPO | [`RayRLTest.ipynb`](taxi-ppo/RayRLTest.ipynb) | Discrete logistics on `Taxi-v3` |
+| 2 | **CartPole DQN** | [`cartpole-dqn/`](cartpole-dqn/) | DQN | [`cartpole_dqn.ipynb`](cartpole-dqn/cartpole_dqn.ipynb) | Off-policy discrete control on `CartPole-v1` |
+| 3 | **Pendulum SAC** | [`pendulum-sac/`](pendulum-sac/) | SAC | [`pendulum_sac.ipynb`](pendulum-sac/pendulum_sac.ipynb) | Continuous control on `Pendulum-v1` |
+| 4 | **Multi-Agent CartPole PPO** | [`multiagent-cartpole/`](multiagent-cartpole/) | Multi-agent PPO | [`multiagent_cartpole.ipynb`](multiagent-cartpole/multiagent_cartpole.ipynb) | Fleet controllers on `MultiAgentCartPole` |
+| 5 | **Offline BC / MARWIL** | [`offline-marwil/`](offline-marwil/) | BC (MARWIL-ready) | [`offline_bc.ipynb`](offline-marwil/offline_bc.ipynb) | Learn from logged CartPole trajectories |
 
 Cover quickstart stays on Taxi; companions are optional next labs. Blueprint overview: [../README.md](../README.md).
 
@@ -25,6 +25,8 @@ projects/<project-slug>/
 ```
 
 Optional later: `assets/`, `configs/`, `tests/` inside a project as needed.
+
+Shared helpers (optional MLflow, etc.) live under [`common/`](common/). Platform sizing and tracking: [`../deploy/README.md`](../deploy/README.md).
 
 ## Add a new project
 

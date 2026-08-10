@@ -36,6 +36,15 @@ python projects/taxi-ppo/train_taxi_ppo.py
 
 Or open `projects/taxi-ppo/RayRLTest.ipynb` and run all cells with the same environment.
 
+Each companion project also has a notebook twin (same deps as its `requirements.txt`):
+
+| Project | Notebook |
+| --- | --- |
+| CartPole DQN | `projects/cartpole-dqn/cartpole_dqn.ipynb` |
+| Pendulum SAC | `projects/pendulum-sac/pendulum_sac.ipynb` |
+| Multi-Agent CartPole | `projects/multiagent-cartpole/multiagent_cartpole.ipynb` |
+| Offline BC | `projects/offline-marwil/offline_bc.ipynb` |
+
 ## 5. What success looks like (Taxi)
 
 Within about a minute you should see five training iterations with improving `episode_return_mean`, then an `evaluate` line. Details: [projects/taxi-ppo/README.md](../projects/taxi-ppo/README.md).
@@ -51,6 +60,14 @@ Within about a minute you should see five training iterations with improving `ep
 
 Full ladder description: [README learning path](../README.md#learning-path).
 
+## 7. Platform options (Workbench)
+
+| Goal | How |
+| --- | --- |
+| More rollout throughput | Larger session + `python projects/taxi-ppo/train_taxi_ppo.py --num-env-runners N` — see [deploy multi-worker](../deploy/README.md#multi-worker-ray-on-workbench) |
+| Track episode return in MLflow | `pip install mlflow` then `RAY_RL_MLFLOW=1` — [deploy/mlflow.md](../deploy/mlflow.md) |
+| Offline from existing logs | Skip the recorder: `train_offline_marwil.py --input /path/to/parquet` — [BYO logs](../projects/offline-marwil/README.md#bring-your-own-parquet-logs) |
+
 ## Troubleshooting
 
 | Symptom | What to try |
@@ -61,6 +78,7 @@ Full ladder description: [README learning path](../README.md#learning-path).
 | Old RLlib API errors | Confirm `ray[rllib]==2.56.1` from the project `requirements.txt` |
 | `python train_*.py` not found at repo root | Entrypoints live under `projects/<slug>/` — use the paths above |
 | Pendulum returns stay very negative | Expected early on; look for the mean becoming *less* negative over iters |
+| `Cluster resources are not enough` | Lower `num_env_runners`, or use a larger session; for offline, prefer `run_pipeline.py` (shuts Ray down between record and train) |
 
 ## Next projects
 

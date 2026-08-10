@@ -7,6 +7,7 @@ Companion to the cover [Taxi PPO](../taxi-ppo/) demo: same Workbench-friendly lo
 | | |
 | --- | --- |
 | Entrypoint | `train_cartpole_dqn.py` |
+| Notebook | [`cartpole_dqn.ipynb`](cartpole_dqn.ipynb) |
 | Algorithm | DQN (`DQNConfig`) |
 | Env | `CartPole-v1` |
 | Workbench guide | [docs/getting-started.md](../../docs/getting-started.md) |
@@ -56,6 +57,8 @@ cd projects/cartpole-dqn
 pip install -r requirements.txt
 python train_cartpole_dqn.py
 ```
+
+Notebook twin: [`cartpole_dqn.ipynb`](cartpole_dqn.ipynb) (select the same venv kernel).
 
 ## What it does
 
