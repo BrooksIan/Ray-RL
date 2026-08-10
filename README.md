@@ -119,7 +119,7 @@ RL loop reminder:
 | `train_taxi_ppo.py` | Runnable PPO → Taxi-v3 script |
 | `RayRLTest.ipynb` | Same example as a notebook |
 | `images/` | Diagrams (RL overview and policy) |
-| `LICENSE` | Unlicense (public domain dedication) |
+| `LICENSE` | Apache License 2.0 |
 
 ## Prerequisites
 
@@ -164,4 +164,6 @@ The model that tries to maximize the expected sum of future rewards is a **polic
 
 ## License
 
-[Unlicense](LICENSE) — public domain dedication.
+Copyright 2023–2026 Ian Brooks
+
+Licensed under the [Apache License, Version 2.0](LICENSE).
