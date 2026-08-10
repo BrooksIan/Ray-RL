@@ -1,0 +1,51 @@
+# Cloudera Blueprint catalog metadata
+# Populate fields used by the master blueprint website and internal catalog.
+
+# --- Identity ---
+name: "Ray RLlib Quickstart on Cloudera AI"
+slug: "ray-rllib-quickstart"
+description: "Train a modern Ray RLlib PPO agent on Gymnasium Taxi-v3 — concepts, notebook, and a runnable script for Cloudera AI Workbench."
+reprise_link: "" # Add public Reprise / demo walkthrough URL when available
+
+# --- Classification (website filters) ---
+catalog_classification:
+  - Developer Example # Options: Enterprise Blueprint | Research | Launchable (AMP) | Developer Example
+launchable: false # true | false
+lifecycle_status: Active # e.g., Active | Deprecated
+
+# --- Industry & alignment ---
+industry: General # e.g., General | Telecom | Financial Services | Healthcare & Life Sciences | Retail | Media | Physical AI & Robotics
+industry_alignment: "Horizontal" # Horizontal | Vertical
+target_vertical: "" # Optional finer-grained vertical
+
+# --- Tags (website search & browse) ---
+tags:
+  - reinforcement-learning
+  - ray
+  - rllib
+  - ppo
+  - gymnasium
+  - pytorch
+
+# --- Relationships ---
+product_mapping: # Cloudera products used
+  - Cloudera Machine Learning
+  - Cloudera AI Workbench
+# model_dependencies: # Models, embeddings, or external AI services, if any. Comment out if none.
+# - none for this quickstart (policy trained from scratch)
+
+# --- Provenance ---
+publisher: cloudera # cloudera | partner-name
+source: Internal # Internal | Partner | NVIDIA Adaptation | Customer
+
+# --- Repository & assets ---
+public_github_link: "https://github.com/BrooksIan/Ray-RL"
+#private_github_link: "" # If applicable, original repo during development
+
+# --- Ownership ---
+maintainer_name: "Ian Brooks"
+
+# --- Dates ---
+date_created: "2023-11-08"
+date_updated: "2026-08-10"
+published_date: "2026-08-10" # Published date / last modified

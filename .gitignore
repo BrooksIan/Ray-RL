@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Jupyter / Ray
+.ipynb_checkpoints/
+ray_results/
+.ray_results/
+/tmp/
+
+# IDE
+.idea/
+.vscode/
+*.swp
