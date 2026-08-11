@@ -73,6 +73,7 @@ python projects/pendulum-sac/train_pendulum_sac.py          # ~5–10 min on CPU
 python projects/multiagent-cartpole/train_multiagent_cartpole.py
 python projects/offline-marwil/run_pipeline.py              # record logs + offline BC
 python projects/custom-env-ppo/train_queue_ppo.py           # custom TicketQueue playground
+python projects/custom-env-ppo/run_offline_pipeline.py      # TicketQueue logs → offline BC
 python projects/taxi-ppo/train_taxi_ppo.py --num-env-runners 4   # larger Workbench session
 ```
 
@@ -240,6 +241,7 @@ Shared diagrams:
 | Pendulum SAC | 2–4 vCPU, 8 GB RAM; ~5–10 minutes on CPU for the default 15-iter smoke run |
 | Offline BC pipeline | 2–4 vCPU, 8 GB RAM; ~2–5 minutes (record + train) |
 | Custom queue PPO | 2+ vCPU, 8 GB RAM; ~1–2 minutes |
+| Custom queue offline pipeline | 2–4 vCPU, 8 GB RAM; ~3–6 minutes |
 | Multi-worker Taxi (`--num-env-runners 4`) | 8 vCPU / 16 GB preferred |
 | Larger / production-style workloads | 4+ vCPU, 16 GB RAM; GPU optional for bigger nets / image envs |
 

@@ -2,3 +2,5 @@
 ray[rllib]==2.56.1
 torch>=2.2,<3
 gymnasium>=1.0,<2
+pyarrow>=14.0.0
+msgpack-numpy>=0.4.8

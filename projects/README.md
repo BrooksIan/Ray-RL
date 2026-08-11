@@ -11,7 +11,7 @@ Each subdirectory under `projects/` is a self-contained Ray RLlib example.
 | 3 | **Pendulum SAC** | [`pendulum-sac/`](pendulum-sac/) | SAC | [`pendulum_sac.ipynb`](pendulum-sac/pendulum_sac.ipynb) | Continuous control on `Pendulum-v1` |
 | 4 | **Multi-Agent CartPole PPO** | [`multiagent-cartpole/`](multiagent-cartpole/) | Multi-agent PPO | [`multiagent_cartpole.ipynb`](multiagent-cartpole/multiagent_cartpole.ipynb) | Fleet controllers on `MultiAgentCartPole` |
 | 5 | **Offline BC / MARWIL** | [`offline-marwil/`](offline-marwil/) | BC (MARWIL-ready) | [`offline_bc.ipynb`](offline-marwil/offline_bc.ipynb) | Learn from logged CartPole trajectories |
-| 6 | **Custom playground PPO** | [`custom-env-ppo/`](custom-env-ppo/) | PPO | [`custom_env_ppo.ipynb`](custom-env-ppo/custom_env_ppo.ipynb) | Define `TicketQueue-v0` + train |
+| 6 | **Custom playground PPO** | [`custom-env-ppo/`](custom-env-ppo/) | PPO + offline BC | [`custom_env_ppo.ipynb`](custom-env-ppo/custom_env_ppo.ipynb) | Define `TicketQueue-v0`, train online, optional logs → BC |
 
 Cover quickstart stays on Taxi; companions are optional next labs. Blueprint overview: [../README.md](../README.md).
 

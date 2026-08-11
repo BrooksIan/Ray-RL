@@ -6,10 +6,13 @@ This is the “bring your own decision process” lab: same RLlib stack as Taxi,
 
 | | |
 | --- | --- |
-| Entrypoint | `train_queue_ppo.py` |
+| Online train | `train_queue_ppo.py` |
+| Record logs | `record_queue_logs.py` |
+| Offline BC | `train_offline_queue_bc.py` |
+| Offline one-shot | `run_offline_pipeline.py` |
 | Env definition | [`queue_env.py`](queue_env.py) |
 | Notebook | [`custom_env_ppo.ipynb`](custom_env_ppo.ipynb) |
-| Algorithm | PPO (`PPOConfig`) |
+| Algorithms | PPO (online) · BC (offline from logs) |
 | Env | `TicketQueue-v0` (custom) |
 
 ## The problem
@@ -168,6 +171,38 @@ EnvRunners sample ──► PPO Learner ──► evaluate()
 
 Edit rewards, arrival probability, or observation features in [`queue_env.py`](queue_env.py), then re-run training — that is the playground loop.
 
+## Offline loop: logs from *your* playground
+
+Close the enterprise story on the same custom env: train a behavior policy → record Parquet → learn **offline BC** (no live exploration during the BC phase). Same pattern as [offline-marwil](../offline-marwil/), but on `TicketQueue-v0`.
+
+```bash
+# Record + offline BC (~3–6 min)
+python projects/custom-env-ppo/run_offline_pipeline.py
+```
+
+Or step by step:
+
+```bash
+python projects/custom-env-ppo/record_queue_logs.py
+python projects/custom-env-ppo/train_offline_queue_bc.py
+```
+
+Logs land under `projects/custom-env-ppo/data/ticketqueue/` (gitignored).
+
+**What success looks like (offline):** record-phase PPO climbs (e.g. ~−51 → ~−19) and logged eval sits near ~−15. Offline BC should **recover the behavior band** (often ~−12 to ~−20) rather than random (~−50) — on this short stochastic queue, returns may oscillate inside that band instead of climbing smoothly like CartPole.
+
+```text
+[Online, short] PPO on TicketQueue ──► behavior checkpoint
+        │
+        ▼ evaluate() + offline_data(output=...)
+Logged episode Parquet  (data/ticketqueue/)
+        │
+        ▼ offline_data(input_=..., input_read_episodes=True)
+BC learner ── evaluate on TicketQueue-v0
+```
+
+Needs `pyarrow` + `msgpack-numpy` (in this project’s `requirements.txt`). `run_offline_pipeline.py` shuts Ray down between record and train to avoid CPU starvation.
+
 ## Architecture
 
 ```text
@@ -178,16 +213,18 @@ EnvRunners ── TicketQueue-v0 (custom Gymnasium)
         │
         ▼
 Eval EnvRunner (manual algo.evaluate())
+
+Optional: record Parquet ──► offline BC (see above)
 ```
 
 ## Requirements
 
 - Python 3.10–3.12
-- [`requirements.txt`](requirements.txt): `ray[rllib]`, Torch, Gymnasium
+- [`requirements.txt`](requirements.txt): `ray[rllib]`, Torch, Gymnasium; plus PyArrow + msgpack-numpy for offline recording
 
 ## See also
 
 - [Taxi PPO](../taxi-ppo/) — same algorithm on a stock Gym env
-- [Offline BC](../offline-marwil/) — next: log this env and learn offline
+- [Offline BC on CartPole](../offline-marwil/) — same offline pattern on a stock env (clearer climb on CartPole; this project closes the loop on *your* playground)
 - [Gymnasium Env API](https://gymnasium.farama.org/api/env/)
 - [Project index](../README.md) · [Cover README](../../README.md)

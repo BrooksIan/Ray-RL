@@ -70,6 +70,7 @@ Full ladder description: [README learning path](../README.md#learning-path).
 | Track episode return in MLflow | `pip install mlflow` then `RAY_RL_MLFLOW=1` (default store `sqlite:///./mlflow.db`) — [deploy/mlflow.md](../deploy/mlflow.md) |
 | Offline from existing logs | Skip the recorder: `train_offline_marwil.py --input /path/to/parquet` — [BYO logs](../projects/offline-marwil/README.md#bring-your-own-parquet-logs) |
 | Custom business process env | Edit + train `TicketQueue-v0` — [custom-env-ppo](../projects/custom-env-ppo/README.md) |
+| Offline from custom playground | `python projects/custom-env-ppo/run_offline_pipeline.py` — [offline loop](../projects/custom-env-ppo/README.md#offline-loop-logs-from-your-playground) |
 
 ## Troubleshooting
 

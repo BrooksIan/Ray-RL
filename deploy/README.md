@@ -14,6 +14,7 @@ Related: [Getting started](../docs/getting-started.md) · [MLflow tracking](mlfl
 | Multi-Agent CartPole | Python 3.10–3.12 | 2+ | 8 GB | No | ~1–2 min | `python projects/multiagent-cartpole/train_multiagent_cartpole.py` |
 | Offline BC / MARWIL | Python 3.10–3.12 | 2–4 | 8 GB | No | ~2–5 min | `python projects/offline-marwil/run_pipeline.py` |
 | Custom playground PPO | Python 3.10–3.12 | 2+ | 8 GB | No | ~1–2 min | `python projects/custom-env-ppo/train_queue_ppo.py` |
+| Custom playground offline | Python 3.10–3.12 | 2–4 | 8 GB | No | ~3–6 min | `python projects/custom-env-ppo/run_offline_pipeline.py` |
 
 Notebooks: cover `projects/taxi-ppo/RayRLTest.ipynb`; companions under each `projects/<slug>/*.ipynb` (see [project index](../projects/README.md)).
 
