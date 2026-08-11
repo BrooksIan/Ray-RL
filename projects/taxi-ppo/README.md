@@ -137,4 +137,5 @@ Next steps in the blueprint ladder:
 - [Pendulum SAC](../pendulum-sac/) — continuous actuators
 - [Multi-Agent CartPole PPO](../multiagent-cartpole/) — fleet / policy mapping
 - [Offline BC / MARWIL](../offline-marwil/) — learn from logged trajectories
+- [Custom playground PPO](../custom-env-ppo/) — define `TicketQueue-v0` + train
 - [Project index](../README.md) · [Cover README](../../README.md)

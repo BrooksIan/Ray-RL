@@ -44,6 +44,7 @@ Each companion project also has a notebook twin (same deps as its `requirements.
 | Pendulum SAC | `projects/pendulum-sac/pendulum_sac.ipynb` |
 | Multi-Agent CartPole | `projects/multiagent-cartpole/multiagent_cartpole.ipynb` |
 | Offline BC | `projects/offline-marwil/offline_bc.ipynb` |
+| Custom playground PPO | `projects/custom-env-ppo/custom_env_ppo.ipynb` |
 
 ## 5. What success looks like (Taxi)
 
@@ -57,6 +58,7 @@ Within about a minute you should see five training iterations with improving `ep
 | [Pendulum SAC](../projects/pendulum-sac/README.md) | `pip install -r projects/pendulum-sac/requirements.txt` | `python projects/pendulum-sac/train_pendulum_sac.py` | ~5–10 min |
 | [Multi-Agent CartPole](../projects/multiagent-cartpole/README.md) | `pip install -r projects/multiagent-cartpole/requirements.txt` | `python projects/multiagent-cartpole/train_multiagent_cartpole.py` | ~1–2 min |
 | [Offline BC / MARWIL](../projects/offline-marwil/README.md) | `pip install -r projects/offline-marwil/requirements.txt` | `python projects/offline-marwil/run_pipeline.py` | ~2–5 min |
+| [Custom playground PPO](../projects/custom-env-ppo/README.md) | `pip install -r projects/custom-env-ppo/requirements.txt` | `python projects/custom-env-ppo/train_queue_ppo.py` | ~1–2 min |
 
 Full ladder description: [README learning path](../README.md#learning-path).
 
@@ -67,6 +69,7 @@ Full ladder description: [README learning path](../README.md#learning-path).
 | More rollout throughput | Larger session + `python projects/taxi-ppo/train_taxi_ppo.py --num-env-runners N` — see [deploy multi-worker](../deploy/README.md#multi-worker-ray-on-workbench) |
 | Track episode return in MLflow | `pip install mlflow` then `RAY_RL_MLFLOW=1` (default store `sqlite:///./mlflow.db`) — [deploy/mlflow.md](../deploy/mlflow.md) |
 | Offline from existing logs | Skip the recorder: `train_offline_marwil.py --input /path/to/parquet` — [BYO logs](../projects/offline-marwil/README.md#bring-your-own-parquet-logs) |
+| Custom business process env | Edit + train `TicketQueue-v0` — [custom-env-ppo](../projects/custom-env-ppo/README.md) |
 
 ## Troubleshooting
 

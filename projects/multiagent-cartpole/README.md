@@ -106,4 +106,6 @@ Apple Silicon: [Ray M-series install notes](https://docs.ray.io/en/latest/ray-ov
 
 - [CartPole DQN](../cartpole-dqn/) — single-agent discrete control (off-policy)
 - [Taxi PPO](../taxi-ppo/) — single-agent on-policy cover demo
+- [Custom playground PPO](../custom-env-ppo/) — single-agent custom Gymnasium env
+- [Project index](../README.md)
 - [RLlib multi-agent docs](https://docs.ray.io/en/latest/rllib/rllib-env.html#multi-agent-and-hierarchical)

@@ -14,6 +14,8 @@ export RAY_RL_MLFLOW=1
 
 python projects/taxi-ppo/train_taxi_ppo.py
 # or
+python projects/custom-env-ppo/train_queue_ppo.py
+# or
 python projects/offline-marwil/train_offline_marwil.py --input projects/offline-marwil/data/cartpole
 ```
 
@@ -29,7 +31,7 @@ View local runs (leave this process running, then open the URL it prints — usu
 mlflow ui --backend-store-uri "${MLFLOW_TRACKING_URI:-sqlite:///./mlflow.db}"
 ```
 
-Look for experiment **`ray-rllib-blueprint`** and runs such as `taxi-ppo` or `offline-bc`. Metrics include `episode_return_mean` / `evaluate_episode_return_mean` by training step.
+Look for experiment **`ray-rllib-blueprint`** and runs such as `taxi-ppo`, `custom-env-ppo`, or `offline-bc`. Metrics include `episode_return_mean` / `evaluate_episode_return_mean` by training step.
 
 ### Legacy `./mlruns` file store
 

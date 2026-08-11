@@ -18,3 +18,4 @@
 | Pendulum SAC | [README](../projects/pendulum-sac/README.md) | [pendulum_sac.ipynb](../projects/pendulum-sac/pendulum_sac.ipynb) |
 | Multi-Agent CartPole PPO | [README](../projects/multiagent-cartpole/README.md) | [multiagent_cartpole.ipynb](../projects/multiagent-cartpole/multiagent_cartpole.ipynb) |
 | Offline BC / MARWIL | [README](../projects/offline-marwil/README.md) | [offline_bc.ipynb](../projects/offline-marwil/offline_bc.ipynb) |
+| Custom playground PPO | [README](../projects/custom-env-ppo/README.md) | [custom_env_ppo.ipynb](../projects/custom-env-ppo/custom_env_ppo.ipynb) |

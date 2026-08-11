@@ -104,4 +104,6 @@ Apple Silicon: [Ray M-series install notes](https://docs.ray.io/en/latest/ray-ov
 ## See also
 
 - Cover demo: [Taxi PPO](../taxi-ppo/) (on-policy, discrete logistics)
+- [Custom playground PPO](../custom-env-ppo/) — define your own Gymnasium env
+- [Project index](../README.md)
 - [RLlib DQN docs](https://docs.ray.io/en/latest/rllib/rllib-algorithms.html#dqn)
