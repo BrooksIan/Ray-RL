@@ -45,6 +45,7 @@ Each companion project also has a notebook twin (same deps as its `requirements.
 | Multi-Agent CartPole | `projects/multiagent-cartpole/multiagent_cartpole.ipynb` |
 | Offline BC | `projects/offline-marwil/offline_bc.ipynb` |
 | Custom playground PPO | `projects/custom-env-ppo/custom_env_ppo.ipynb` |
+| Offline → online | `projects/offline-to-online/offline_to_online.ipynb` |
 
 ## 5. What success looks like (Taxi)
 
@@ -59,6 +60,7 @@ Within about a minute you should see five training iterations with improving `ep
 | [Multi-Agent CartPole](../projects/multiagent-cartpole/README.md) | `pip install -r projects/multiagent-cartpole/requirements.txt` | `python projects/multiagent-cartpole/train_multiagent_cartpole.py` | ~1–2 min |
 | [Offline BC / MARWIL](../projects/offline-marwil/README.md) | `pip install -r projects/offline-marwil/requirements.txt` | `python projects/offline-marwil/run_pipeline.py` | ~2–5 min |
 | [Custom playground PPO](../projects/custom-env-ppo/README.md) | `pip install -r projects/custom-env-ppo/requirements.txt` | `python projects/custom-env-ppo/train_queue_ppo.py` | ~1–2 min |
+| [Offline → online](../projects/offline-to-online/README.md) | `pip install -r projects/offline-to-online/requirements.txt` | `python projects/offline-to-online/train_offline_to_online.py` | ~3–8 min |
 
 Full ladder description: [README learning path](../README.md#learning-path).
 
@@ -71,6 +73,7 @@ Full ladder description: [README learning path](../README.md#learning-path).
 | Offline from existing logs | Skip the recorder: `train_offline_marwil.py --input /path/to/parquet` — [BYO logs](../projects/offline-marwil/README.md#bring-your-own-parquet-logs) |
 | Custom business process env | Edit + train `TicketQueue-v0` — [custom-env-ppo](../projects/custom-env-ppo/README.md) |
 | Offline from custom playground | `python projects/custom-env-ppo/run_offline_pipeline.py` — [offline loop](../projects/custom-env-ppo/README.md#offline-loop-logs-from-your-playground) |
+| BC warm-start → PPO fine-tune | `python projects/offline-to-online/train_offline_to_online.py` — [offline→online](../projects/offline-to-online/README.md) |
 
 ## Troubleshooting
 
@@ -83,6 +86,7 @@ Full ladder description: [README learning path](../README.md#learning-path).
 | `python train_*.py` not found at repo root | Entrypoints live under `projects/<slug>/` — use the paths above |
 | Pendulum returns stay very negative | Expected early on; look for the mean becoming *less* negative over iters |
 | `Cluster resources are not enough` | Lower `num_env_runners`, or use a larger session; for offline, prefer `run_pipeline.py` (shuts Ray down between record and train) |
+| Offline→online warm-start ≈ random (~20 on CartPole) | Confirm `models.py` trunk transfer; re-run BC longer; see [offline-to-online README](../projects/offline-to-online/README.md) |
 
 ## Next projects
 

@@ -19,3 +19,4 @@
 | Multi-Agent CartPole PPO | [README](../projects/multiagent-cartpole/README.md) | [multiagent_cartpole.ipynb](../projects/multiagent-cartpole/multiagent_cartpole.ipynb) |
 | Offline BC / MARWIL | [README](../projects/offline-marwil/README.md) | [offline_bc.ipynb](../projects/offline-marwil/offline_bc.ipynb) |
 | Custom playground PPO | [README](../projects/custom-env-ppo/README.md) | [custom_env_ppo.ipynb](../projects/custom-env-ppo/custom_env_ppo.ipynb) |
+| Offline → online | [README](../projects/offline-to-online/README.md) | [offline_to_online.ipynb](../projects/offline-to-online/offline_to_online.ipynb) |

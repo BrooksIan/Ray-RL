@@ -2,7 +2,7 @@
 
 This blueprint runs as code inside a **Cloudera AI Workbench** (or CML) session / notebook. It is not packaged as a container service; deployment = provision runtime → install deps → run project entrypoint.
 
-Related: [Getting started](../docs/getting-started.md) · [MLflow tracking](mlflow.md) · [Offline BYO logs](../projects/offline-marwil/README.md#bring-your-own-parquet-logs) · [Custom playground](../projects/custom-env-ppo/README.md)
+Related: [Getting started](../docs/getting-started.md) · [MLflow tracking](mlflow.md) · [Offline BYO logs](../projects/offline-marwil/README.md#bring-your-own-parquet-logs) · [Custom playground](../projects/custom-env-ppo/README.md) · [Offline → online](../projects/offline-to-online/README.md)
 
 ## Session sizing by project (single-session smoke)
 
@@ -15,6 +15,7 @@ Related: [Getting started](../docs/getting-started.md) · [MLflow tracking](mlfl
 | Offline BC / MARWIL | Python 3.10–3.12 | 2–4 | 8 GB | No | ~2–5 min | `python projects/offline-marwil/run_pipeline.py` |
 | Custom playground PPO | Python 3.10–3.12 | 2+ | 8 GB | No | ~1–2 min | `python projects/custom-env-ppo/train_queue_ppo.py` |
 | Custom playground offline | Python 3.10–3.12 | 2–4 | 8 GB | No | ~3–6 min | `python projects/custom-env-ppo/run_offline_pipeline.py` |
+| Offline → online fine-tune | Python 3.10–3.12 | 2–4 | 8 GB | No | ~3–8 min | `python projects/offline-to-online/train_offline_to_online.py` |
 
 Notebooks: cover `projects/taxi-ppo/RayRLTest.ipynb`; companions under each `projects/<slug>/*.ipynb` (see [project index](../projects/README.md)).
 

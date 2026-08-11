@@ -30,6 +30,7 @@ The learning system trains a **policy** — which actions maximize long-term cum
 | Multi-agent | Several agents/policies act in one environment loop |
 | Offline / imitation | Learn from logged trajectories without online exploration (e.g. BC, MARWIL) |
 | Custom environment | Your `gymnasium.Env` registered with Ray (`register_env`) — not only stock Gym |
+| Offline → online | Imitate logs (BC), then fine-tune online (PPO) from that warm start |
 
 ![RL with policy](../assets/RLWithPolicy.png)
 
@@ -45,6 +46,7 @@ The learning system trains a **policy** — which actions maximize long-term cum
 | [Multi-Agent CartPole](../projects/multiagent-cartpole/README.md) | `MultiAgentCartPole` | Multi-agent PPO | Fleet of controllers; policies + mapping function |
 | [Offline BC / MARWIL](../projects/offline-marwil/README.md) | Logged `CartPole-v1` | BC (MARWIL-ready) | Learn from trajectories when online exploration is costly |
 | [Custom playground PPO](../projects/custom-env-ppo/README.md) | `TicketQueue-v0` (custom) | PPO | Define your own Gymnasium env, then train |
+| [Offline → online](../projects/offline-to-online/README.md) | CartPole or TicketQueue logs | BC → PPO | Imitate logs offline, then fine-tune online |
 
 ### Concrete example: Taxi (cover)
 
@@ -56,9 +58,13 @@ That is why RL is the natural approach — you learn a **sequence of decisions**
 
 Stock Gym envs teach algorithms. A **custom env** teaches how to encode *your* process: observations, actions, and rewards. Step 6 ([custom-env-ppo](../projects/custom-env-ppo/README.md)) defines a single-server ticket queue, registers it with `register_env`, and trains PPO — the same trainer as Taxi on dynamics you control. For a step-by-step use-case → playground checklist, see [How to define a playground for your use case](../projects/custom-env-ppo/README.md#how-to-define-a-playground-for-your-use-case).
 
+### Concrete example: offline → online
+
+Step 7 ([offline-to-online](../projects/offline-to-online/README.md)) is the usual production sequence: **BC from Parquet logs** (no live exploration), then **low-lr PPO** that loads the BC policy trunk and improves online. Success means warm-start evaluate ≈ BC final, and fine-tune evaluate ≥ warm-start.
+
 ## Why Ray RLlib
 
-[RLlib](https://docs.ray.io/en/latest/rllib/index.html) provides production-oriented, distributed RL algorithms (PPO, DQN, SAC, BC, MARWIL, and others) with a unified config/train/evaluate API. This blueprint uses the **new API stack**: EnvRunners for sampling, RLModules for policies, connectors (for example `FlattenObservations` on discrete Taxi states), `.multi_agent(...)` for fleets, `.offline_data(...)` for logged Parquet, and `register_env` for custom Gymnasium playgrounds.
+[RLlib](https://docs.ray.io/en/latest/rllib/index.html) provides production-oriented, distributed RL algorithms (PPO, DQN, SAC, BC, MARWIL, and others) with a unified config/train/evaluate API. This blueprint uses the **new API stack**: EnvRunners for sampling, RLModules for policies, connectors (for example `FlattenObservations` on discrete Taxi states), `.multi_agent(...)` for fleets, `.offline_data(...)` for logged Parquet, `register_env` for custom Gymnasium playgrounds, and checkpoint warm-start for offline→online fine-tune.
 
 Algorithm catalog: [RLlib algorithms](https://docs.ray.io/en/latest/rllib/rllib-algorithms.html).
 
@@ -70,6 +76,7 @@ Algorithm catalog: [RLlib algorithms](https://docs.ray.io/en/latest/rllib/rllib-
 | Optional MLflow episode-return tracking | [deploy/mlflow.md](../deploy/mlflow.md) |
 | Bring-your-own offline Parquet | [offline-marwil README](../projects/offline-marwil/README.md#bring-your-own-parquet-logs) |
 | Custom Gymnasium playground + PPO | [custom-env-ppo README](../projects/custom-env-ppo/README.md) |
+| Offline → online fine-tune | [offline-to-online README](../projects/offline-to-online/README.md) |
 | Notebook twins for every project | [docs/README.md](README.md) |
 
 ## Further reading

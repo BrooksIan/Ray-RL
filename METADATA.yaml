@@ -4,13 +4,12 @@
 # --- Identity ---
 name: "Ray RLlib on Cloudera AI"
 slug: "ray-rllib-on-cloudera-ai"
-description: "Multi-project Ray RLlib labs on Cloudera AI — Taxi/PPO cover, plus DQN, SAC, multi-agent, offline BC, and a custom queue playground."
+description: "Multi-project Ray RLlib labs on Cloudera AI — Taxi/PPO cover through offline→online fine-tune."
 long_description: >
   Learn distributed reinforcement learning with Ray RLlib on Cloudera AI Workbench.
   The cover demo uses Gymnasium Taxi with PPO (pickup-and-delivery, delayed rewards).
-  Companion projects add DQN on CartPole, SAC on Pendulum, multi-agent PPO on
-  MultiAgentCartPole, offline BC from logged CartPole trajectories (MARWIL-ready),
-  and a custom TicketQueue Gymnasium playground trained with PPO.
+  Companion projects add DQN, SAC, multi-agent PPO, offline BC, a custom TicketQueue
+  playground, and offline→online fine-tune (BC warm-start then PPO).
   Includes script entrypoints, Jupyter notebooks for every project, optional MLflow
   episode-return tracking, multi-worker Workbench sizing notes, an RL primer, and
   deploy guidance.
@@ -45,6 +44,11 @@ projects:
     algorithm: PPO
     status: companion
     notes: "Custom TicketQueue-v0 Gymnasium env + register_env"
+  - slug: offline-to-online
+    path: projects/offline-to-online
+    algorithm: BC-PPO
+    status: companion
+    notes: "BC warm-start from Parquet then low-lr PPO fine-tune"
 
 # --- Classification (website filters) ---
 catalog_classification:
@@ -73,6 +77,7 @@ tags:
   - mlflow
   - gymnasium
   - custom-environment
+  - offline-to-online
   - pytorch
   - multi-project
   - cloudera-ai
@@ -105,5 +110,5 @@ maintainer_email: "ibrooks@cloudera.com"
 
 # --- Dates ---
 date_created: "2023-11-08"
-date_updated: "2026-08-11"
+date_updated: "2026-08-11"  # offline-to-online (BC→PPO) ladder step 7
 published_date: "2026-08-10"

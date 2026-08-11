@@ -12,6 +12,7 @@ Each subdirectory under `projects/` is a self-contained Ray RLlib example.
 | 4 | **Multi-Agent CartPole PPO** | [`multiagent-cartpole/`](multiagent-cartpole/) | Multi-agent PPO | [`multiagent_cartpole.ipynb`](multiagent-cartpole/multiagent_cartpole.ipynb) | Fleet controllers on `MultiAgentCartPole` |
 | 5 | **Offline BC / MARWIL** | [`offline-marwil/`](offline-marwil/) | BC (MARWIL-ready) | [`offline_bc.ipynb`](offline-marwil/offline_bc.ipynb) | Learn from logged CartPole trajectories |
 | 6 | **Custom playground PPO** | [`custom-env-ppo/`](custom-env-ppo/) | PPO + offline BC | [`custom_env_ppo.ipynb`](custom-env-ppo/custom_env_ppo.ipynb) | Define `TicketQueue-v0`, train online, optional logs → BC |
+| 7 | **Offline → online** | [`offline-to-online/`](offline-to-online/) | BC → PPO | [`offline_to_online.ipynb`](offline-to-online/offline_to_online.ipynb) | Warm-start from logs, then fine-tune online |
 
 Cover quickstart stays on Taxi; companions are optional next labs. Blueprint overview: [../README.md](../README.md).
 
@@ -41,4 +42,5 @@ Shared helpers (optional MLflow, etc.) live under [`common/`](common/). Platform
 3. Link it from this file and from the root [`README.md`](../README.md) **Learning path** and **Projects** tables.
 4. Update [`docs/getting-started.md`](../docs/getting-started.md), [`docs/rl-primer.md`](../docs/rl-primer.md), and [`deploy/README.md`](../deploy/README.md) if session sizing or story differs.
 5. For a new Gymnasium env, follow [`custom-env-ppo/`](custom-env-ppo/) (`register_env` + PPO).
-6. Keep the cover README’s **Demo / Quickstart** focused on `taxi-ppo` unless you intentionally change the cover story.
+6. For BC warm-start → online fine-tune, follow [`offline-to-online/`](offline-to-online/).
+7. Keep the cover README’s **Demo / Quickstart** focused on `taxi-ppo` unless you intentionally change the cover story.

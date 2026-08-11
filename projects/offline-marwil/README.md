@@ -120,6 +120,7 @@ Online CartPole score of the offline-trained policy
 - [CartPole DQN](../cartpole-dqn/) — same env, online off-policy
 - [Taxi PPO](../taxi-ppo/) — cover online on-policy demo
 - [Custom playground PPO](../custom-env-ppo/) — define an env, then (later) log it for offline
+- [Offline → online](../offline-to-online/) — BC warm-start, then PPO fine-tune
 - [Project index](../README.md)
 - [RLlib offline RL](https://docs.ray.io/en/latest/rllib/rllib-offline.html)
 - [MARWIL in algorithms](https://docs.ray.io/en/latest/rllib/rllib-algorithms.html#marwil)

@@ -225,6 +225,7 @@ Optional: record Parquet ──► offline BC (see above)
 ## See also
 
 - [Taxi PPO](../taxi-ppo/) — same algorithm on a stock Gym env
-- [Offline BC on CartPole](../offline-marwil/) — same offline pattern on a stock env (clearer climb on CartPole; this project closes the loop on *your* playground)
+- [Offline BC on CartPole](../offline-marwil/) — same offline pattern on a stock env
+- [Offline → online](../offline-to-online/) — BC warm-start then PPO (`--env ticketqueue` uses these logs)
 - [Gymnasium Env API](https://gymnasium.farama.org/api/env/)
 - [Project index](../README.md) · [Cover README](../../README.md)

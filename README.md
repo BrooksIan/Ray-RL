@@ -1,6 +1,6 @@
 # Cloudera Blueprint: Ray RLlib on Cloudera AI
 
-> Multi-project **Ray RLlib** examples for Cloudera AI Workbench. The cover demo trains **PPO on Gymnasium Taxi-v3**; companions add DQN, SAC, multi-agent PPO, offline BC (MARWIL-ready), and a **custom queue playground**. Catalog fields: [`METADATA.yaml`](METADATA.yaml).
+> Multi-project **Ray RLlib** examples for Cloudera AI Workbench. The cover demo trains **PPO on Gymnasium Taxi-v3**; companions run through DQN, SAC, multi-agent, offline BC, a custom queue playground, and **offline→online fine-tune**. Catalog fields: [`METADATA.yaml`](METADATA.yaml).
 
 ## Table of Contents
 
@@ -20,7 +20,7 @@
 
 ## Overview
 
-**Ray RLlib on Cloudera AI** helps ML engineers and architects learn distributed reinforcement learning where they already work — inside Cloudera AI Workbench. The blueprint ships a featured PPO → Taxi-v3 quickstart on RLlib’s current EnvRunner / RLModule API, then a ladder of companion projects that teach off-policy discrete control (DQN), continuous actuators (SAC), multi-agent fleets (multi-agent PPO), offline learning from logs (BC, MARWIL-ready), and **defining a custom Gymnasium playground**. Cloudera value: run Ray-based RL experiments on the same governed AI workbench used for notebooks, sessions, and team collaboration — with optional multi-worker sizing and MLflow episode-return tracking.
+**Ray RLlib on Cloudera AI** helps ML engineers and architects learn distributed reinforcement learning where they already work — inside Cloudera AI Workbench. The blueprint ships a featured PPO → Taxi-v3 quickstart on RLlib’s current EnvRunner / RLModule API, then a ladder of companion projects that teach off-policy discrete control (DQN), continuous actuators (SAC), multi-agent fleets, offline learning from logs (BC), custom Gymnasium playgrounds, and **offline→online fine-tune** (BC warm-start, then PPO). Cloudera value: run Ray-based RL experiments on the same governed AI workbench used for notebooks, sessions, and team collaboration — with optional multi-worker sizing and MLflow episode-return tracking.
 
 ## Learning path
 
@@ -34,6 +34,7 @@ Work through the projects in order — each adds one RLlib capability without le
 | 4 | [`multiagent-cartpole`](projects/multiagent-cartpole/) | Multi-agent PPO | Policies, mapping fn, fleet-style controllers |
 | 5 | [`offline-marwil`](projects/offline-marwil/) | BC (MARWIL-ready) | Learn from logged trajectories (no online explore) |
 | 6 | [`custom-env-ppo`](projects/custom-env-ppo/) | PPO | Define a custom Gymnasium playground (`TicketQueue-v0`) |
+| 7 | [`offline-to-online`](projects/offline-to-online/) | BC → PPO | Warm-start from logs, then fine-tune online |
 
 All share the same install pattern: `pip install -r projects/<slug>/requirements.txt` then run the project script or notebook.
 
@@ -60,6 +61,7 @@ Interactive twins (same venv / `requirements.txt` as each project):
 | Multi-Agent CartPole | [`projects/multiagent-cartpole/multiagent_cartpole.ipynb`](projects/multiagent-cartpole/multiagent_cartpole.ipynb) |
 | Offline BC | [`projects/offline-marwil/offline_bc.ipynb`](projects/offline-marwil/offline_bc.ipynb) |
 | Custom playground PPO | [`projects/custom-env-ppo/custom_env_ppo.ipynb`](projects/custom-env-ppo/custom_env_ppo.ipynb) |
+| Offline → online | [`projects/offline-to-online/offline_to_online.ipynb`](projects/offline-to-online/offline_to_online.ipynb) |
 
 Sample output and troubleshooting: [`projects/taxi-ppo/README.md`](projects/taxi-ppo/README.md).
 
@@ -74,10 +76,11 @@ python projects/multiagent-cartpole/train_multiagent_cartpole.py
 python projects/offline-marwil/run_pipeline.py              # record logs + offline BC
 python projects/custom-env-ppo/train_queue_ppo.py           # custom TicketQueue playground
 python projects/custom-env-ppo/run_offline_pipeline.py      # TicketQueue logs → offline BC
+python projects/offline-to-online/train_offline_to_online.py  # BC warm-start → PPO fine-tune
 python projects/taxi-ppo/train_taxi_ppo.py --num-env-runners 4   # larger Workbench session
 ```
 
-Platform extras: [multi-worker sizing](deploy/README.md#multi-worker-ray-on-workbench) · [MLflow](deploy/mlflow.md) · [BYO Parquet offline](projects/offline-marwil/README.md#bring-your-own-parquet-logs) · [Custom playground](projects/custom-env-ppo/README.md)
+Platform extras: [multi-worker sizing](deploy/README.md#multi-worker-ray-on-workbench) · [MLflow](deploy/mlflow.md) · [BYO Parquet offline](projects/offline-marwil/README.md#bring-your-own-parquet-logs) · [Custom playground](projects/custom-env-ppo/README.md) · [Offline → online](projects/offline-to-online/README.md)
 
 ## Use Case
 
@@ -104,16 +107,16 @@ That is the same shape as many enterprise control problems: route a resource, co
 
 RL fits because Taxi is a **sequential decision** problem with **delayed credit**: the valuable +20 arrives only after a chain of moves. Algorithms like PPO improve a policy by trial and error — try routes, take the penalties and bonuses, and reinforce behaviors that raise cumulative return.
 
-Taxi is intentionally small (500 discrete states, 6 actions), so you can see learning quickly on a laptop or Workbench session. Companion projects extend the same RLlib loop to discrete control (CartPole/DQN), continuous actuators (Pendulum/SAC), multi-agent fleets (MultiAgentCartPole/PPO), offline imitation from logs (BC), and a **custom queue playground** you can edit.
+Taxi is intentionally small (500 discrete states, 6 actions), so you can see learning quickly on a laptop or Workbench session. Companion projects extend the same RLlib loop to discrete control (CartPole/DQN), continuous actuators (Pendulum/SAC), multi-agent fleets, offline imitation from logs (BC), a **custom queue playground**, and **offline→online fine-tune**.
 
 ### Blueprint outcome
 
-Teams leave with a reproducible first success on Cloudera AI — train and evaluate PPO on Taxi-v3 in minutes — then a clear ladder into off-policy, continuous, multi-agent, offline, and custom-environment RLlib patterns under one repo.
+Teams leave with a reproducible first success on Cloudera AI — train and evaluate PPO on Taxi-v3 in minutes — then a clear ladder into off-policy, continuous, multi-agent, offline, custom-environment, and production-style warm-start → fine-tune RLlib patterns under one repo.
 
 ## Key Features
 
 - Featured **Taxi PPO** cover demo on the current RLlib API stack
-- Companion projects: **DQN**, **SAC**, **multi-agent PPO**, **offline BC** (MARWIL-ready), and **custom env + PPO**
+- Companion projects: **DQN**, **SAC**, **multi-agent PPO**, **offline BC**, **custom env + PPO**, and **offline→online fine-tune**
 - **Multi-project** layout (`projects/<slug>/`) with a documented learning path
 - Runnable **scripts and Jupyter notebooks** for every project, with pinned dependencies
 - **Workbench-ready** deploy notes: session sizing, multi-worker EnvRunners, optional MLflow
@@ -184,9 +187,9 @@ Cloudera AI Workbench (session / notebook)
 | Component | Role |
 | --- | --- |
 | Cloudera AI Workbench | Runtime for sessions, notebooks, and team projects |
-| Ray RLlib | Distributed RL (PPO, DQN, SAC, multi-agent, BC / MARWIL) |
+| Ray RLlib | Distributed RL (PPO, DQN, SAC, multi-agent, BC / MARWIL, offline→online) |
 | PyTorch | Default deep learning backend for RLModules |
-| Gymnasium | Standard envs (`Taxi-v3`, `CartPole-v1`, `Pendulum-v1`) |
+| Gymnasium | Stock envs (`Taxi-v3`, `CartPole-v1`, `Pendulum-v1`) + custom `TicketQueue-v0` |
 | MLflow (optional) | Episode-return experiment tracking (`RAY_RL_MLFLOW=1`) |
 | `projects/*` | Self-contained demos (script, notebook, pins, README) |
 
@@ -220,6 +223,7 @@ Shared diagrams:
 | `projects/multiagent-cartpole/` | Multi-agent PPO → MultiAgentCartPole |
 | `projects/offline-marwil/` | Offline BC from logged CartPole episodes (MARWIL-ready) |
 | `projects/custom-env-ppo/` | Custom `TicketQueue-v0` playground + PPO |
+| `projects/offline-to-online/` | BC warm-start from logs → PPO fine-tune |
 | `LICENSE` | Apache License 2.0 |
 
 ## Prerequisites
@@ -242,6 +246,7 @@ Shared diagrams:
 | Offline BC pipeline | 2–4 vCPU, 8 GB RAM; ~2–5 minutes (record + train) |
 | Custom queue PPO | 2+ vCPU, 8 GB RAM; ~1–2 minutes |
 | Custom queue offline pipeline | 2–4 vCPU, 8 GB RAM; ~3–6 minutes |
+| Offline → online fine-tune | 2–4 vCPU, 8 GB RAM; ~3–8 minutes |
 | Multi-worker Taxi (`--num-env-runners 4`) | 8 vCPU / 16 GB preferred |
 | Larger / production-style workloads | 4+ vCPU, 16 GB RAM; GPU optional for bigger nets / image envs |
 
@@ -253,7 +258,7 @@ See [deploy/README.md](deploy/README.md) for Workbench session guidance.
 - [RL primer](docs/rl-primer.md)
 - [Deploy / sizing / multi-worker](deploy/README.md) · [MLflow tracking](deploy/mlflow.md)
 - [Project index](projects/README.md)
-- [Taxi PPO](projects/taxi-ppo/README.md) · [CartPole DQN](projects/cartpole-dqn/README.md) · [Pendulum SAC](projects/pendulum-sac/README.md) · [Multi-Agent CartPole](projects/multiagent-cartpole/README.md) · [Offline BC / MARWIL](projects/offline-marwil/README.md) · [Custom playground PPO](projects/custom-env-ppo/README.md)
+- [Taxi PPO](projects/taxi-ppo/README.md) · [CartPole DQN](projects/cartpole-dqn/README.md) · [Pendulum SAC](projects/pendulum-sac/README.md) · [Multi-Agent CartPole](projects/multiagent-cartpole/README.md) · [Offline BC / MARWIL](projects/offline-marwil/README.md) · [Custom playground PPO](projects/custom-env-ppo/README.md) · [Offline → online](projects/offline-to-online/README.md)
 - [RLlib docs](https://docs.ray.io/en/latest/rllib/index.html) · [RLlib algorithms](https://docs.ray.io/en/latest/rllib/rllib-algorithms.html)
 - [Cloudera AI documentation](https://docs.cloudera.com/)
 - [Proximal Policy Optimization (paper)](https://arxiv.org/abs/1707.06347)
@@ -268,6 +273,7 @@ See [deploy/README.md](deploy/README.md) for Workbench session guidance.
 | [**multiagent-cartpole**](projects/multiagent-cartpole/) | Companion | Multi-agent PPO | Fleet controllers on `MultiAgentCartPole` |
 | [**offline-marwil**](projects/offline-marwil/) | Companion | BC (MARWIL-ready) | Offline learning from logged CartPole trajectories |
 | [**custom-env-ppo**](projects/custom-env-ppo/) | Companion | PPO | Custom `TicketQueue-v0` Gymnasium playground |
+| [**offline-to-online**](projects/offline-to-online/) | Companion | BC → PPO | Warm-start from logs, then fine-tune online |
 
 Add more under `projects/<slug>/` using the [project convention](projects/README.md).
 

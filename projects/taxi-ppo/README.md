@@ -138,4 +138,5 @@ Next steps in the blueprint ladder:
 - [Multi-Agent CartPole PPO](../multiagent-cartpole/) — fleet / policy mapping
 - [Offline BC / MARWIL](../offline-marwil/) — learn from logged trajectories
 - [Custom playground PPO](../custom-env-ppo/) — define `TicketQueue-v0` + train
+- [Offline → online](../offline-to-online/) — BC warm-start, then PPO fine-tune
 - [Project index](../README.md) · [Cover README](../../README.md)

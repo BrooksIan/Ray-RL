@@ -108,5 +108,6 @@ Apple Silicon: [Ray M-series install notes](https://docs.ray.io/en/latest/ray-ov
 - [Taxi PPO](../taxi-ppo/) — on-policy, discrete logistics
 - [CartPole DQN](../cartpole-dqn/) — off-policy, discrete control
 - [Custom playground PPO](../custom-env-ppo/) — define your own Gymnasium env
+- [Offline → online](../offline-to-online/) — BC warm-start, then PPO fine-tune
 - [Project index](../README.md)
 - [RLlib SAC docs](https://docs.ray.io/en/latest/rllib/rllib-algorithms.html#sac)
